@@ -1,0 +1,63 @@
+@use "properties" as *;
+
+.navigation {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  background-color: $background-white;
+  border-bottom: 1px solid $border-color-grey;
+  padding-inline: clamp(1.25rem, 1.5vw, 1.5rem);
+
+  .container {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 0.5rem 0;
+
+    .logo {
+      width: max-content;
+      margin-top: 0.5rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .search {
+      justify-self: end;
+
+      /******change******/
+      display: flex;
+      align-items: center;
+      /******************/
+
+      width: 215px;
+      height: 28px;
+      cursor: text;
+      border-radius: 3px;
+      border: 1.5px solid $border-color-grey;
+      background-color: $background-grey;
+
+      .search-icon {
+        opacity: 0.6;
+        margin: 0.35rem -0.15rem -0.15rem 0.5rem;
+      }
+
+      .search-text {
+        font-size: 0.9rem;
+        font-weight: 300;
+        color: $font-color-secondary;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .search {
+    display: none !important;
+  }
+}

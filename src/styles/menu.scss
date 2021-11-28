@@ -1,0 +1,19 @@
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.4rem;
+
+  .icon {
+    width: 21px;
+    height: 21px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .profileIcon {
+    margin-top: -3px;
+  }
+}
