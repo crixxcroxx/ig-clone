@@ -7,7 +7,9 @@ export default function Nav() {
   return (
     <div className="navigation">
       <div className="container">
-        <img className="logo" src={igIcon} alt="Instagram" />
+        <div className="logo">
+          <img src={igIcon} alt="Instagram" />
+        </div>
 
         <div className="search">
           <SearchIcon className="search-icon" />

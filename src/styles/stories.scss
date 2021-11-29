@@ -1,0 +1,19 @@
+@use "properties" as *;
+
+.stories {
+  display: flex;
+  align-items: center;
+
+  height: 7.4rem;
+  margin: 2rem 0 1.5rem 0;
+  overflow: hidden;
+  border-radius: 3px;
+  border: 1px solid $border-color-grey;
+  background-color: $background-white;
+}
+
+@media only screen and (max-width: 640px) {
+  .stories {
+    margin: 0 0 0.5rem 0;
+  }
+}

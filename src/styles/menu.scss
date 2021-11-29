@@ -1,8 +1,12 @@
 .menu {
+  flex: 1 0 0%;
+
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 1.4rem;
+
+  padding-left: 24px;
 
   .icon {
     width: 21px;
