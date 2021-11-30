@@ -8,9 +8,11 @@ import users from '../data/users';
 export default function Stories() {
   return (
     <div className="stories">
-      <HorizontalScroll className="scroll" reverseScroll={true} >
-        { users.map(u => <div key={u.id}><Story /></div>) }
-      </HorizontalScroll>
+      <div className="stories-list">
+        <HorizontalScroll className="scroll" reverseScroll={true} >
+          { users.map(u => <div key={u.id}><Story /></div>) }
+        </HorizontalScroll>
+      </div>
     </div>
   );
 }

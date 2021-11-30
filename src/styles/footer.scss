@@ -1,0 +1,27 @@
+@use "properties" as *;
+
+footer {
+  color: $font-color-footer;
+  font-size: 0.7rem;
+  margin-top: 2rem;
+
+  .links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 0 2rem 0;
+    padding: 0;
+    list-style-type: none;
+
+    li {
+      &:after {
+        content: "\2022";
+        margin: 0 0.25rem;
+      }
+
+      &:last-child:after {
+        content: "";
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import Nav from './Nav';
-import Card from './Card';
+import Posts from './Posts';
+import Stories from './Stories';
 import Sidebar from './Sidebar';
 import '../styles/App.scss';
 
@@ -9,7 +10,10 @@ export default function App() {
       <Nav />
       <main>
         <div className="container">
-          <Card />
+          <div className="content">
+            <Stories />
+            <Posts />
+          </div>
           <Sidebar />
         </div>
       </main>

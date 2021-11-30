@@ -1,0 +1,22 @@
+@use "properties" as *;
+
+.card-menu {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0;
+
+  .interactions {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .icon {
+    width: 23px;
+    height: 23px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

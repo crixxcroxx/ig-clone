@@ -22,17 +22,16 @@ a {
 
 main {
   background-color: $background-grey;
-  margin-top: 60px;
+  margin-top: 55px;
 
   .container {
     display: flex;
-    justify-content: left;
     margin: 0 auto;
     max-width: 1000px;
   }
 }
 
-@media only screen and (max-width: 1024px)  {
+@media only screen and (max-width: 1000px)  {
   main .container {
     justify-content: center !important;
   }

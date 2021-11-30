@@ -1,9 +1,86 @@
-.stories {
-  width: 600px;
+@use "properties" as *;
+
+.card {
+  margin-bottom: 3.5rem;
+  border-radius: 3px;
+  border: 1px solid $border-color-grey;
+  background-color: $background-white;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+
+    .profile {
+      margin-bottom: 0;
+    }
+
+    .ellipsis-icon {
+      height: 30px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .card-image {
+    display: block;
+    width: 100%;
+  }
+
+  .liked-by {
+    display: flex;
+    padding-left: 1rem;
+
+    span {
+      margin-left: 0.5rem;
+      padding-top: 0.5rem;
+      font-size: 0.75rem;
+    }
+  }
+
+  .time-posted {
+    font-size: 0.6rem;
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+    color: $font-color-secondary;
+    border-bottom: 1px solid $border-color-grey-secondary;
+  }
+
+  .comments {
+    margin-bottom: 0.75rem;
+  }
+
+  .add-comment {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    padding: 1.5rem 1.25rem;
+
+    .comment-text {
+      color: $font-color-secondary;
+    }
+
+    .post-text {
+      color: $link-color-secondary;
+    }
+  }
 }
 
 @media only screen and (max-width: 640px) {
-  .stories {
-    width: 100%;
+  .card {
+    border: none;
+    background-color: $background-grey;
+    margin-bottom: 0.75rem;
+
+    .add-comment {
+      display: none;
+    }
+
+    .time-posted {
+      border: none;
+    }
   }
 }

@@ -1,0 +1,19 @@
+@use "properties" as *;
+
+.suggestions {
+  margin-top: 1.25rem;
+
+  .title-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: $font-color-secondary;
+    margin-bottom: 1.25rem;
+
+    .title-container {
+      color: $font-color-primary;
+      min-width: 200px;
+    }
+  }
+}
