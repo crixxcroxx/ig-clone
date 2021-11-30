@@ -12,10 +12,14 @@
 
     display: flex;
     flex-direction: column;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
 
     font-size: 0.9rem;
     color: $font-color-primary;
+
+    &.big {
+      margin-left: 1rem;
+    }
 
     .account-name {
       font-weight: 600;

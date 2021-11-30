@@ -5,8 +5,9 @@ export default function Comment(props) {
 
   return (
     <div className="comment-container">
-      <div className="account-name">{accountName}</div>
-      <div className="comment">{comment}</div>
+      <span className="user">
+        <strong>{accountName} </strong>{comment}
+      </span>
     </div>
   );
 }

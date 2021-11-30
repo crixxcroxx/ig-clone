@@ -26,7 +26,7 @@ export default function Profile(props) {
         storyBorder={storyBorder}
       />
       {(accntName || caption) && !hideAccountName && (
-        <div className="text-container">
+        <div className={`text-container ${captionSize}`}>
           <span className="account-name">{accntName}</span>
           <span className={`caption ${captionSize}`}>{caption}</span>
         </div>

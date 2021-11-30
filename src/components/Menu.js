@@ -18,7 +18,7 @@ export default function Menu() {
       <ProfileIcon
         iconSize="small"
         image={profileImage}
-        storyBorder={true}
+        storyBorder={false}
       />
     </div>
   );

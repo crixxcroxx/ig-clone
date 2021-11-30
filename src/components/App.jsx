@@ -14,7 +14,10 @@ export default function App() {
             <Stories />
             <Posts />
           </div>
-          <Sidebar />
+
+          <div className="sticky">
+            <Sidebar />
+          </div>
         </div>
       </main>
     </div>

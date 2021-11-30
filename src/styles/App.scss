@@ -5,12 +5,12 @@
 }
 
 body {
-  background-color: $background-white;
-  font-family: $font;
-  font-size: 16px;
+  min-width: fit-content;
   margin: 0;
   padding: 0;
-  min-width: fit-content;
+  font-size: 16px;
+  font-family: $font;
+  background-color: $background-grey;
 }
 
 a {
@@ -21,13 +21,23 @@ a {
 }
 
 main {
-  background-color: $background-grey;
-  margin-top: 55px;
+  max-width: 935px;
+  margin: 0 auto;
+
 
   .container {
     display: flex;
-    margin: 0 auto;
-    max-width: 1000px;
+    justify-content: left;
+    gap: 1.6rem;
+
+    .content {
+      margin-top: 52px;
+      max-width: 614px;
+    }
+
+    .sticky {
+      position: sticky;
+    }
   }
 }
 

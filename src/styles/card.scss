@@ -2,11 +2,13 @@
 
 .card {
   margin-bottom: 3.5rem;
+  font-size: 0.9rem;
+  color: $font-color-primary;
   border-radius: 3px;
   border: 1px solid $border-color-grey;
   background-color: $background-white;
 
-  .header {
+  header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,7 +19,7 @@
     }
 
     .ellipsis-icon {
-      height: 30px;
+      /*height: 30px;*/
 
       &:hover {
         cursor: pointer;
@@ -30,41 +32,62 @@
     width: 100%;
   }
 
-  .liked-by {
+  .card-desc {
     display: flex;
-    padding-left: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
 
-    span {
-      margin-left: 0.5rem;
-      padding-top: 0.5rem;
-      font-size: 0.75rem;
+    padding-inline: 1rem;
+
+    .liked-by {
+      display: flex;
+
+      span {
+        margin-left: 0.5rem;
+        padding-top: 0.5rem;
+      }
     }
-  }
 
-  .time-posted {
-    font-size: 0.6rem;
-    padding-left: 2rem;
-    padding-bottom: 1rem;
-    color: $font-color-secondary;
-    border-bottom: 1px solid $border-color-grey-secondary;
-  }
+    .user-post-desc {
+      display: flex;
+    }
 
-  .comments {
-    margin-bottom: 0.75rem;
-  }
+    .view-all-comments {
+      color: $font-color-secondary;
 
-  .add-comment {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    padding: 1.5rem 1.25rem;
+      &:hover {
+        cursor: pointer;
+      }
+    }
 
-    .comment-text {
+    .comments {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .time-posted {
+      font-size: 0.6rem;
       color: $font-color-secondary;
     }
+  }
 
-    .post-text {
-      color: $link-color-secondary;
+  .card-footer {
+    .add-comment {
+      display: flex;
+      justify-content: space-between;
+
+      margin-top: 1rem;
+      padding: 1.5rem 1.25rem;
+      border-top: 1px solid $border-color-grey-secondary;
+
+      .comment-text {
+        color: $font-color-secondary;
+      }
+
+      .post-text {
+        color: $link-color-secondary;
+      }
     }
   }
 }

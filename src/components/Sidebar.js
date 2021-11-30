@@ -1,5 +1,4 @@
 import Sticky from 'react-sticky-el';
-//import ProfileIcon from './ProfileIcon';
 import Profile from './Profile';
 import Suggestions from './Suggestions';
 import Footer from './Footer';
@@ -13,7 +12,7 @@ export default function Sidebar() {
         <Profile
           username="crixx.croxx"
           caption="Cris Tajesawa"
-          captionSize="small"
+          captionSize="big"
           urlText="Switch"
           iconSize="big"
           image={profileImage}
