@@ -1,73 +1,44 @@
 import Card from './Card';
+import useFetch from '../hooks/useFetch';
+import getRandomInt from '../helpers/getRandomInt';
 import '../styles/posts.scss';
 
 export default function Posts() {
-  const commentsOne = [
-    {
-      user: "raffagrassetti",
-      text: "Woah dude, this is awesome! 🔥",
-      id: 1,
-    },
-    {
-      user: "therealadamsavage",
-      text: "Like!",
-      id: 2,
-    },
-    {
-      user: "mapvault",
-      text: "Niceeeee!",
-      id: 3,
-    },
-  ];
+  const { isLoading:isLoadingUsers, data:users } = useFetch('users')
+  const { isLoading:isLoadingPosts, data:posts } = useFetch('posts')
+  const { isLoading:isLoadingComments, data:comments } = useFetch('comments')
 
-  const commentsTwo = [
-    {
-      user: "mapvault",
-      text: "Amazing content, keep it up!",
-      id: 4,
-    },
-  ];
+  function getPost(uId) {
+    let rand = getRandomInt(0, 9)
+    let idx = posts.findIndex(post => post.userId === uId)
 
-  const commentsThree = [
-    {
-      user: "dadatlacak",
-      text: "Love this!",
-      id: 5,
-    },
-  ];
+    return posts[idx + rand]
+  }
+
+  const getSrc = () => {
+    let rand = getRandomInt(5, 10)
+    let src = `https://unsplash.it/${rand}00/${rand}00`
+
+    return src
+  }
 
   return (
-    <div className="posts">
-      <Card
-        accountName="asasa"
-        storyBorder={true}
-        image="https://picsum.photos/800/900"
-        comments={commentsOne}
-        likedByText="axxxa"
-        likedByNumber={3}
-        hours={8}
-      />
-
-      <Card
-        accountName="asasa"
-        storyBorder={true}
-        image="https://picsum.photos/800"
-        comments={commentsTwo}
-        likedByText="xasa"
-        likedByNumber={9}
-        hours={8}
-      />
-
-      <Card
-        accountName="sdsds"
-        storyBorder={true}
-        image="https://picsum.photos/400/900"
-        comments={commentsThree}
-        likedByText="sdfsa"
-        likedByNumber={4}
-        hours={3}
-      />
-    </div>
+    <div className="posts">{
+      !isLoadingUsers && !isLoadingPosts && !isLoadingComments &&
+      users.map(user =>
+        <Card
+          key={user.id}
+          accountName={user.username}
+          post={getPost(user.id)}
+          storyBorder={true}
+          image={getSrc()}
+          comments={comments}
+          likedByText={users[getRandomInt(0, 9)].name}
+          likedByNumber={getRandomInt(0, 100)}
+          hours={getRandomInt(0, 12)}
+        />
+      )
+    }</div>
   );
 }
 

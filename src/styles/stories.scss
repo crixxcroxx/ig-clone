@@ -9,11 +9,20 @@
   align-items: center;
 
   height: 7.4rem;
-  margin: 2rem 0 1.5rem 0;
+  margin: 2rem 0 0 0;
   overflow: hidden;
   border-radius: 3px;
   border: 1px solid $border-color-grey;
   background-color: $background-white;
+
+
+  &:first-child {
+    margin-left: 1rem;
+  }
+
+  &:last-child {
+    margin-right: 1rem;
+  }
 }
 
 @media only screen and (max-width: 640px) {

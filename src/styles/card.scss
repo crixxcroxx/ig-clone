@@ -1,7 +1,6 @@
 @use "properties" as *;
 
 .card {
-  margin-bottom: 3.5rem;
   font-size: 0.9rem;
   color: $font-color-primary;
   border-radius: 3px;
@@ -30,6 +29,10 @@
   .card-image {
     display: block;
     width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .card-desc {
@@ -41,15 +44,31 @@
 
     .liked-by {
       display: flex;
+      align-items: center;
 
       span {
-        margin-left: 0.5rem;
-        padding-top: 0.5rem;
+        margin-left: 0.3rem;
       }
     }
 
     .user-post-desc {
       display: flex;
+
+      .username {
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+
+          i {
+          color: $font-color-secondary;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
     }
 
     .view-all-comments {
@@ -78,11 +97,21 @@
       justify-content: space-between;
 
       margin-top: 1rem;
-      padding: 1.5rem 1.25rem;
+      padding: 1rem;
       border-top: 1px solid $border-color-grey-secondary;
 
-      .comment-text {
+      .comment-label {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
         color: $font-color-secondary;
+
+        svg {
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
       }
 
       .post-text {

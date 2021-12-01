@@ -31,12 +31,12 @@ main {
     gap: 1.6rem;
 
     .content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+
       margin-top: 52px;
       max-width: 614px;
-    }
-
-    .sticky {
-      position: sticky;
     }
   }
 }
@@ -44,5 +44,13 @@ main {
 @media only screen and (max-width: 1000px)  {
   main .container {
     justify-content: center !important;
+
+    .content {
+      max-width: 600px;
+    }
+
+    .sticky {
+      display: none;
+    }
   }
 }

@@ -1,7 +1,14 @@
 import Profile from './Profile';
+import useFetch from '../hooks/useFetch';
+import getRandomInt from '../helpers/getRandomInt';
 import '../styles/suggestions.scss';
 
 export default function Suggestions() {
+  const { isLoading, data } = useFetch('users')
+  let users = data
+  users.splice(5, 10)
+  let getRandomUser = () => { return data[getRandomInt(0, 4)].username }
+
   return (
     <div className="suggestions">
       <div className="title-container">
@@ -9,48 +16,19 @@ export default function Suggestions() {
         <a href="/"><strong>See All</strong></a>
       </div>
 
-      <div className="suggestions-list">
-        <Profile
-          username="crixx.croxx"
-          caption="Followed by u-name + 3 more"
-          captionSize="small"
-          urlText="Follow"
-          iconSize="medium"
-          storyBorder={false}
-        />
-        <Profile
-          username="cdsax"
-          caption="Followed by sss + 3 more"
-          captionSize="small"
-          urlText="Follow"
-          iconSize="medium"
-          storyBorder={false}
-        />
-        <Profile
-          username="sasas"
-          caption="Followed by asde + 1 more"
-          captionSize="small"
-          urlText="Follow"
-          iconSize="medium"
-          storyBorder={false}
-        />
-        <Profile
-          username="xcz"
-          caption="Followed by dd"
-          captionSize="small"
-          urlText="Follow"
-          iconSize="medium"
-          storyBorder={false}
-        />
-        <Profile
-          username="fdhg"
-          caption="Followed by sad + 1 more"
-          captionSize="small"
-          urlText="Follow"
-          iconSize="medium"
-          storyBorder={false}
-        />
-      </div>
+      <div className="suggestions-list">{
+        !isLoading && users.map(user =>
+          <Profile
+            key={user.id}
+            username={user.username}
+            caption={`Followed by ${getRandomUser()} + ${getRandomInt(1, 15)} more`}
+            captionSize="small"
+            urlText="Follow"
+            iconSize="medium"
+            storyBorder={false}
+          />
+        )
+      }</div>
     </div>
   );
 }

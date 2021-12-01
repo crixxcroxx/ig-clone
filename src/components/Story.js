@@ -1,11 +1,10 @@
 import ProfileIcon from './ProfileIcon';
-import users from '../data/users';
+import useFetch from '../hooks/useFetch';
 import '../styles/story.scss';
 
-export default function Story() {
-  let accntName = users[Math.floor(Math.random() * users.length)].username
-
-  if(accntName.length > 7) accntName = accntName.substring(0, 7) + "..."
+export default function Story({ user }) {
+  let accntName = user
+  if(accntName.length > 10) accntName = accntName.substring(0, 10) + "..."
 
   return (
     <div className="story">

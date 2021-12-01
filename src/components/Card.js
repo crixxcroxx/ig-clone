@@ -1,11 +1,15 @@
 import Profile from './Profile';
 import CardMenu from './CardMenu';
 import Comment from './Comment';
+import getRandomInt from '../helpers/getRandomInt';
 import { ReactComponent as EllipsisIcon } from '../images/ellipsis.svg';
+import { ReactComponent as EmojiIcon } from '../images/emoji.svg';
 import '../styles/card.scss';
 
 export default function Card(props) {
   const {
+    accountName,
+    post,
     storyBorder,
     image,
     comments,
@@ -17,7 +21,7 @@ export default function Card(props) {
   return (
     <div className="card">
       <header>
-        <Profile storyBorder={storyBorder} iconSize="medium" />
+        <Profile username={accountName} storyBorder={storyBorder} iconSize="medium" />
         <EllipsisIcon className="ellipsis-icon" />
       </header>
 
@@ -36,23 +40,29 @@ export default function Card(props) {
 
         <div className="user-post-desc">
           <span>
-            <strong>User </strong>
-            post is placed here...
+            <strong className="username">{accountName} </strong>
+            { post.body.length > 45 &&
+              <>
+                { post.body.substring(0, 45) }
+                <i>...more</i>
+              </>
+            }
           </span>
         </div>
 
-        <div className="view-all-comments">{`View all ${87} comments`}</div>
+        <div className="view-all-comments">{`View all ${getRandomInt(0, 50)} comments`}</div>
 
         <div className="comments">
-          {comments.map(comment =>
-            <>
-              <Comment
-                key={comment.id}
-                accountName={comment.user}
-                comment={comment.text}
-              />
-            </>
-          )}
+          <Comment
+            key={comments[getRandomInt(0, 500)].id}
+            accountName={comments[getRandomInt(0, 500)].email.split("@")[0]}
+            comment={comments[getRandomInt(0, 500)].body.substring(0, 50) + "..."}
+          />
+          <Comment
+            key={comments[getRandomInt(0, 500)].id}
+            accountName={comments[getRandomInt(0, 500)].email.split("@")[0]}
+            comment={comments[getRandomInt(0, 500)].body.substring(0, 50) + "..."}
+          />
         </div>
 
         <div className="time-posted">{hours} HOURS AGO</div>
@@ -60,7 +70,10 @@ export default function Card(props) {
 
       <div className="card-footer">
         <div className="add-comment">
-          <div className="comment-text">Add a comment</div>
+          <div className="comment-label">
+            <EmojiIcon />
+            <div className="comment-text">Add a comment</div>
+          </div>
           <div className="post-text">Post</div>
         </div>
       </div>

@@ -1,5 +1,30 @@
 @use "properties" as *;
 
 .comment-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 0.9rem;
+
+  .user {
+    .user-name {
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .icon-container {
+    height: 12px;
+
+    svg {
+      height: 100%;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }

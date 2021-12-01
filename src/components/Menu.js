@@ -1,6 +1,6 @@
 import ProfileIcon from './ProfileIcon';
 import { ReactComponent as HomeIcon } from '../images/home.svg';
-import { ReactComponent as PlaneIcon } from '../images/plane.svg';
+import { ReactComponent as MessengerIcon } from '../images/messenger.svg';
 import { ReactComponent as NewPostIcon } from '../images/plus.svg';
 import { ReactComponent as ExploreIcon } from '../images/explore.svg';
 import { ReactComponent as HeartIcon } from '../images/heart.svg';
@@ -11,7 +11,7 @@ export default function Menu() {
   return (
     <div className="menu">
       <HomeIcon className="icon" />
-      <PlaneIcon className="icon" />
+      <MessengerIcon className="icon" />
       <NewPostIcon className="icon" />
       <ExploreIcon className="icon" />
       <HeartIcon className="icon" />

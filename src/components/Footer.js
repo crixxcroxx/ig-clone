@@ -16,8 +16,8 @@ export default function Footer() {
         <li>Hashtags</li>
         <li>Languages</li>
       </ul>
-      <div className="links">
-        @2020 INSTAGRAM FROM FACEBOOK
+      <div className="">
+        © 2021 INSTAGRAM FROM META
       </div>
     </footer>
   );
