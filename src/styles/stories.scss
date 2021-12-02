@@ -15,13 +15,8 @@
   border: 1px solid $border-color-grey;
   background-color: $background-white;
 
-
-  &:first-child {
-    margin-left: 1rem;
-  }
-
-  &:last-child {
-    margin-right: 1rem;
+  .scroll {
+    margin: 0 0.25rem;
   }
 }
 

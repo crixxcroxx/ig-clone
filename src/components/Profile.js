@@ -28,7 +28,9 @@ export default function Profile(props) {
       {(accntName || caption) && !hideAccountName && (
         <div className={`text-container ${captionSize}`}>
           <span className="account-name">{accntName}</span>
-          <span className={`caption ${captionSize}`}>{caption}</span>
+          { caption &&
+            <span className={`caption ${captionSize}`}>{caption}</span>
+          }
         </div>
       )}
       <a href="/">{urlText}</a>

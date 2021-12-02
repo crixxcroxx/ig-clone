@@ -1,7 +1,7 @@
 import '../styles/nav.scss';
 import Menu from './Menu';
 import igIcon from '../images/instagramLogo.png';
-import { ReactComponent as SearchIcon } from '../images/search.svg';
+import { IoSearch } from 'react-icons/io5';
 
 export default function Nav() {
   return (
@@ -12,7 +12,7 @@ export default function Nav() {
         </div>
 
         <div className="search">
-          <SearchIcon className="search-icon" />
+          <IoSearch className="search-icon" />
           <span className="search-text">Search</span>
         </div>
 

@@ -1,19 +1,18 @@
-//import Profile from './Profile';
-import { ReactComponent as HeartIcon } from '../images/heart.svg';
-import { ReactComponent as CommentIcon } from '../images/comment.svg';
-import { ReactComponent as PlaneIcon } from '../images/plane.svg';
-import { ReactComponent as BookmarkIcon } from '../images/bookmark.svg';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { IoChatbubbleOutline } from 'react-icons/io5';
+import { IoPaperPlaneOutline } from 'react-icons/io5';
+import { BsBookmark } from 'react-icons/bs';
 import '../styles/cardMenu.scss';
 
 export default function CardMenu() {
   return (
     <div className="card-menu">
       <div className="interactions">
-        <HeartIcon className="icon" />
-        <CommentIcon className="icon" />
-        <PlaneIcon className="icon" />
+        <AiOutlineHeart className="icon heart-icon" />
+        <IoChatbubbleOutline className="icon" />
+        <IoPaperPlaneOutline className="icon" />
       </div>
-      <BookmarkIcon className="icon" />
+      <BsBookmark className="icon bookmark-icon" />
     </div>
   );
 }

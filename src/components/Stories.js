@@ -1,4 +1,4 @@
-import HorizontalScroll from 'react-scroll-horizontal';
+import HorizontalScroll from 'react-scroll-horizontal'
 import Story from './Story';
 import useFetch from '../hooks/useFetch';
 import '../styles/stories.scss';

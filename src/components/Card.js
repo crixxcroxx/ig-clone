@@ -2,8 +2,8 @@ import Profile from './Profile';
 import CardMenu from './CardMenu';
 import Comment from './Comment';
 import getRandomInt from '../helpers/getRandomInt';
-import { ReactComponent as EllipsisIcon } from '../images/ellipsis.svg';
-import { ReactComponent as EmojiIcon } from '../images/emoji.svg';
+import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
+import { AiOutlineSmile } from 'react-icons/ai';
 import '../styles/card.scss';
 
 export default function Card(props) {
@@ -22,7 +22,7 @@ export default function Card(props) {
     <div className="card">
       <header>
         <Profile username={accountName} storyBorder={storyBorder} iconSize="medium" />
-        <EllipsisIcon className="ellipsis-icon" />
+        <IoEllipsisHorizontalSharp className="ellipsis-icon" />
       </header>
 
       <img className="card-image" src={image} alt="Card Content" />
@@ -33,24 +33,22 @@ export default function Card(props) {
         <div className="liked-by">
           <Profile hideAccountName={true} iconSize="small" />
           <span>Liked by
-            <strong> {likedByText}</strong> and
-            <strong> {likedByNumber}</strong> others
+            <strong className="username">{likedByText}</strong> and
+            <strong> {likedByNumber} others</strong>
           </span>
         </div>
 
         <div className="user-post-desc">
-          <span>
-            <strong className="username">{accountName} </strong>
+          <strong className="username">{accountName}</strong>
             { post.body.length > 45 &&
               <>
                 { post.body.substring(0, 45) }
-                <i>...more</i>
+                <span className="more-text">...more</span>
               </>
             }
-          </span>
         </div>
 
-        <div className="view-all-comments">{`View all ${getRandomInt(0, 50)} comments`}</div>
+        <div className="view-all-comments">{`View all ${getRandomInt(3, 50)} comments`}</div>
 
         <div className="comments">
           <Comment
@@ -70,11 +68,19 @@ export default function Card(props) {
 
       <div className="card-footer">
         <div className="add-comment">
-          <div className="comment-label">
-            <EmojiIcon />
-            <div className="comment-text">Add a comment</div>
+          <div className="comment-input">
+            <AiOutlineSmile className="emoji-icon" />
+            <textarea
+              className="comment-text"
+              placeholder="Add a comment…"
+              cols="51"
+              rows="1"
+              autocomplete="off"
+              autocorrect="off"
+            >
+            </textarea>
           </div>
-          <div className="post-text">Post</div>
+          <strong className="post-text">Post</strong>
         </div>
       </div>
     </div>
