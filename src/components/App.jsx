@@ -1,26 +1,19 @@
+import { Routes, Route } from 'react-router-dom';
 import Nav from './Nav';
-import Posts from './Posts';
-import Stories from './Stories';
-import Sidebar from './Sidebar';
+import Home from '../pages/home';
+import Messages from '../pages/messages';
+import Explore from '../pages/explore';
 import '../styles/App.scss';
 
 export default function App() {
-
   return (
     <div className="App">
       <Nav />
-      <main>
-        <div className="container">
-          <div className="content">
-            <Stories />
-            <Posts />
-          </div>
-
-          <div className="sticky">
-            <Sidebar />
-          </div>
-        </div>
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/messages" element={<Messages />} />
+        <Route path="/explore" element={<Explore />} />
+      </Routes>
     </div>
   );
 }

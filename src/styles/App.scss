@@ -20,38 +20,3 @@ a {
   font-size: 0.9rem;
   font-weight: 500;
 }
-
-main {
-  max-width: 935px;
-  margin: 0 auto;
-
-
-  .container {
-    display: flex;
-    justify-content: left;
-    gap: 1.6rem;
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      gap: 1.6rem;
-
-      margin-top: 52px;
-      max-width: 614px;
-    }
-  }
-}
-
-@media only screen and (max-width: 1000px)  {
-  main .container {
-    justify-content: center !important;
-
-    .content {
-      max-width: 600px;
-    }
-
-    .sticky {
-      display: none;
-    }
-  }
-}

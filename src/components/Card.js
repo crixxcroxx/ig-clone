@@ -75,8 +75,8 @@ export default function Card(props) {
               placeholder="Add a comment…"
               cols="51"
               rows="1"
-              autocomplete="off"
-              autocorrect="off"
+              autoComplete="off"
+              autoCorrect="off"
             >
             </textarea>
           </div>

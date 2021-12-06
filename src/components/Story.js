@@ -1,5 +1,4 @@
 import ProfileIcon from './ProfileIcon';
-import useFetch from '../hooks/useFetch';
 import '../styles/story.scss';
 
 export default function Story({ user }) {

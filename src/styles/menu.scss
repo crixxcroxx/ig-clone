@@ -1,3 +1,5 @@
+@use "properties" as *;
+
 .menu {
   flex: 1 0 0%;
 
@@ -6,20 +8,147 @@
   align-items: center;
   gap: 1.25rem;
 
+  a {
+    color: $font-color-primary;
+  }
+
+  [role="button"] {
+    cursor: pointer;
+  }
+
   .icon {
     font-size: 1.5rem;
     font-weight: 800;
+  }
+}
 
-    &:nth-child(4) {
-      font-size: 1.35rem;
+.post-modal,
+.notif-modal,
+.profile-modal {
+    position: absolute;
+    border-radius: 5px;
+    background-color: $background-white;
+    box-shadow: $background-shadow;
+    z-index: 4;
+
+    .modal-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      height: 43px;
+      text-align: center;
+      font-weight: 600;
+      border-bottom: 1px solid $border-color-grey;
     }
 
-    &:hover {
-      cursor: pointer;
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 1rem;
+
+      padding: 1rem;
+
+      p {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 0;
+
+        font-size: 0.9rem;
+      }
+
+      hr {
+        width: 100%;
+        margin: 0.2rem 0;
+        border-top: 0 solid $font-color-footer;
+      }
+
+      .icon {
+        font-size: 1rem;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+}
+
+.post-overlay,
+.notif-overlay,
+.profile-overlay, {
+  position: fixed;
+  inset: 0;
+  background-color: transparent;
+  z-index: 3;
+}
+
+.post-modal {
+  inset: 50% auto auto 50% ;
+  width: 348px;//minmax(348px, 855px)
+  height: 390px;//minmax(391px, 898px)
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+
+  .modal-content {
+    align-items: center;
+    height: calc(100% - 43px);
+
+    p {
+      font-size: 1.4rem;
+    }
+
+    button {
+      width: max-content;
+      margin: 0 auto;
+      padding: 7px 9px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 5px;
+      color: $background-white;
+      background-color: $link-color;
     }
   }
+}
 
-  .profileIcon {
-    margin-top: -3px;
+.post-overlay {
+  background-color: rgba(0,0,0,.85);
+}
+
+.notif-modal {
+  inset: 53px 0px 0px calc(100vw - 550px);
+  width: 500px;
+  height: 240px;
+
+  .modal-content {
+    align-items: center;
+    text-align: center;
+
+    .icon {
+      font-size: 5rem;
+    }
+  }
+}
+
+.profile-modal {
+  inset: 53px 0px 0px calc(100vw - 250px);
+  width: 230px;
+  height: 200px;
+
+  .modal-content {
+    gap: 0;
+    padding: 0;
+
+    p {
+      padding: 0.6rem 1rem;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $background-grey;
+      }
+    }
   }
 }
