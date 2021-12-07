@@ -1,6 +1,6 @@
 import Card from './Card';
 import useFetch from '../hooks/useFetch';
-import getRandomInt from '../helpers/getRandomInt';
+import getRandomInt from '../utils/getRandomInt';
 import '../styles/posts.scss';
 
 export default function Posts() {

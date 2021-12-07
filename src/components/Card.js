@@ -1,7 +1,7 @@
 import Profile from './Profile';
 import CardMenu from './CardMenu';
 import Comment from './Comment';
-import getRandomInt from '../helpers/getRandomInt';
+import getRandomInt from '../utils/getRandomInt';
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { AiOutlineSmile } from 'react-icons/ai';
 import '../styles/card.scss';

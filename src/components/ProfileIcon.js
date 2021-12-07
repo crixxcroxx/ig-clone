@@ -1,4 +1,4 @@
-import getRandomInt from '../helpers/getRandomInt';
+import getRandomInt from '../utils/getRandomInt';
 import '../styles/profileIcon.scss';
 
 export default function ProfileIcon(props) {

@@ -1,6 +1,6 @@
 import Profile from './Profile';
 import useFetch from '../hooks/useFetch';
-import getRandomInt from '../helpers/getRandomInt';
+import getRandomInt from '../utils/getRandomInt';
 import '../styles/suggestions.scss';
 
 export default function Suggestions() {
