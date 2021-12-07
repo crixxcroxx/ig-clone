@@ -15,7 +15,7 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { BsCloudUpload } from 'react-icons/bs';
 
 //notif icon when no notif
-import { IoHeartCircleOutline } from 'react-icons/io5';
+import { GiNestedHearts } from 'react-icons/gi';
 
 //profile menu
 import { CgProfile } from 'react-icons/cg';
@@ -96,7 +96,7 @@ export default function Menu() {
       >
 
         <div className="modal-content">
-          <IoHeartCircleOutline className="icon" />
+          <GiNestedHearts className="icon" />
           <p>Activity On Your Posts</p>
           <p>When someone likes or comments on one of your posts, you'll see it here.</p>
         </div>
