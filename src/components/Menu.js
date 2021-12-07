@@ -11,6 +11,9 @@ import { BiMessageSquareAdd } from 'react-icons/bi';
 import { AiOutlineCompass } from 'react-icons/ai';
 import { AiOutlineHeart } from 'react-icons/ai';
 
+//upload modal img
+import { BsCloudUpload } from 'react-icons/bs';
+
 //notif icon when no notif
 import { IoHeartCircleOutline } from 'react-icons/io5';
 
@@ -77,6 +80,7 @@ export default function Menu() {
       >
         <div className="modal-header">Create new post</div>
         <div className="modal-content">
+          <BsCloudUpload className="icon" />
           <p>Drag photos and videos here</p>
           <button>Select from computer</button>
         </div>
