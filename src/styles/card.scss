@@ -1,6 +1,8 @@
 @use "properties" as *;
 
 .card {
+  align-content: flex-start;
+  width: 100%;
   font-size: 0.9rem;
   color: $font-color-primary;
   border-radius: 3px;
@@ -8,9 +10,7 @@
   background-color: $background-white;
 
   header {
-    display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 0.75rem 1rem;
 
     .profile {
@@ -36,15 +36,11 @@
   }
 
   .card-desc {
-    display: flex;
     flex-direction: column;
     gap: 0.5rem;
-
     padding-inline: 1rem;
 
     .liked-by {
-      display: flex;
-      align-items: center;
 
       .username {
         margin-left: 0.3rem;
@@ -89,7 +85,6 @@
     }
 
     .comments {
-      display: flex;
       flex-direction: column;
       gap: 0.35rem;
     }
@@ -102,17 +97,12 @@
 
   .card-footer {
     .add-comment {
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-
       margin-top: 1rem;
       padding: 1rem;
       border-top: 1px solid $border-color-grey-secondary;
 
       .comment-input {
-        display: flex;
-        align-items: center;
         gap: 1rem;
         color: $font-color-secondary;
 
@@ -140,7 +130,7 @@
   }
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 600px) {
   .card {
     border: none;
     background-color: $background-grey;
@@ -148,10 +138,6 @@
 
     .add-comment {
       display: none;
-    }
-
-    .time-posted {
-      border: none;
     }
   }
 }

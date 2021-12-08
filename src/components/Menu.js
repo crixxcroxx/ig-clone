@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import FlexBox from './FlexBox';
 import ProfileIcon from './ProfileIcon';
 import profileImage from '../images/profile.jpg';
 import Modal from 'react-modal';
@@ -14,7 +15,7 @@ import { AiOutlineHeart } from 'react-icons/ai';
 //upload modal img
 import { BsCloudUpload } from 'react-icons/bs';
 
-//notif icon when no notif
+//notif modal icon when no notif
 import { GiNestedHearts } from 'react-icons/gi';
 
 //profile menu
@@ -69,7 +70,8 @@ export default function Menu() {
   }
 
   return (
-    <div className="menu" id="menu">
+    <FlexBox className="menu" id="menu">
+
       {/* Create new Post modal */}
       <Modal
         isOpen={isPostModalOpen}
@@ -78,12 +80,12 @@ export default function Menu() {
         overlayClassName="post-overlay"
         contentLabel={"Create New Post"}
       >
-        <div className="modal-header">Create new post</div>
-        <div className="modal-content">
+        <FlexBox className="modal-header">Create new post</FlexBox>
+        <FlexBox className="modal-content">
           <BsCloudUpload className="icon" />
           <p>Drag photos and videos here</p>
           <button>Select from computer</button>
-        </div>
+        </FlexBox>
       </Modal>
 
       {/* View notifs modal */}
@@ -95,11 +97,11 @@ export default function Menu() {
         contentLabel={"View Notifs"}
       >
 
-        <div className="modal-content">
+        <FlexBox className="modal-content">
           <GiNestedHearts className="icon" />
           <p>Activity On Your Posts</p>
           <p>When someone likes or comments on one of your posts, you'll see it here.</p>
-        </div>
+        </FlexBox>
       </Modal>
 
       {/* profile menu modal */}
@@ -110,14 +112,14 @@ export default function Menu() {
         overlayClassName="profile-overlay"
         contentLabel={"Profile Menu"}
       >
-        <div className="modal-content">
+        <FlexBox className="modal-content">
           <p><span><CgProfile className="icon" /></span> Profile</p>
           <p><span><BsBookmark className="icon" /></span> Saved</p>
           <p><span><BsGearWide className="icon" /></span> Settings</p>
           <p><span><AiOutlineSync className="icon" /></span> Switch Account</p>
           <hr />
           <p>Logout</p>
-        </div>
+        </FlexBox>
       </Modal>
 
       {/*Links*/}
@@ -164,6 +166,6 @@ export default function Menu() {
           storyBorder={false}
         />
       </i>
-    </div>
+    </FlexBox>
   );
 }

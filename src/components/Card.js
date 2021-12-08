@@ -1,9 +1,13 @@
+import FlexBox from './FlexBox';
 import Profile from './Profile';
 import CardMenu from './CardMenu';
 import Comment from './Comment';
+
 import getRandomInt from '../utils/getRandomInt';
+
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { AiOutlineSmile } from 'react-icons/ai';
+
 import '../styles/card.scss';
 
 export default function Card(props) {
@@ -20,23 +24,23 @@ export default function Card(props) {
 
   return (
     <div className="card">
-      <header>
+      <FlexBox as="header">
         <Profile username={accountName} storyBorder={storyBorder} iconSize="medium" />
         <IoEllipsisHorizontalSharp className="ellipsis-icon" />
-      </header>
+      </FlexBox>
 
       <img className="card-image" src={image} alt="Card Content" />
 
-      <div className="card-desc">
+      <FlexBox className="card-desc" aliItem="normal">
         <CardMenu />
 
-        <div className="liked-by">
+        <FlexBox className="liked-by">
           <Profile hideAccountName={true} iconSize="small" />
           <span>Liked by
             <strong className="username">{likedByText}</strong> and
             <strong> {likedByNumber} others</strong>
           </span>
-        </div>
+        </FlexBox>
 
         <div className="user-post-desc">
           <strong className="username">{accountName}</strong>
@@ -50,7 +54,7 @@ export default function Card(props) {
 
         <div className="view-all-comments">{`View all ${getRandomInt(3, 50)} comments`}</div>
 
-        <div className="comments">
+        <FlexBox className="comments" aliItem="normal">
           <Comment
             key={comments[getRandomInt(0, 500)].id}
             accountName={comments[getRandomInt(0, 500)].email.split("@")[0]}
@@ -61,14 +65,14 @@ export default function Card(props) {
             accountName={comments[getRandomInt(0, 500)].email.split("@")[0]}
             comment={comments[getRandomInt(0, 500)].body.substring(0, 50) + "..."}
           />
-        </div>
+        </FlexBox>
 
         <div className="time-posted">{hours} HOURS AGO</div>
-      </div>
+      </FlexBox>
 
-      <div className="card-footer">
-        <div className="add-comment">
-          <div className="comment-input">
+      <FlexBox className="card-footer">
+        <FlexBox className="add-comment">
+          <FlexBox className="comment-input">
             <AiOutlineSmile className="emoji-icon" />
             <textarea
               className="comment-text"
@@ -79,10 +83,10 @@ export default function Card(props) {
               autoCorrect="off"
             >
             </textarea>
-          </div>
+          </FlexBox>
           <strong className="post-text">Post</strong>
-        </div>
-      </div>
+        </FlexBox>
+      </FlexBox>
     </div>
   );
 }

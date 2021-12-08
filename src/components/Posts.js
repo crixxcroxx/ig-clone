@@ -1,10 +1,11 @@
-import Card from './Card';
 import useFetch from '../hooks/useFetch';
+import FlexBox from './FlexBox';
+import Card from './Card';
 import getRandomInt from '../utils/getRandomInt';
+import users from '../data/users';
 import '../styles/posts.scss';
 
 export default function Posts() {
-  const { isLoading:isLoadingUsers, data:users } = useFetch('users')
   const { isLoading:isLoadingPosts, data:posts } = useFetch('posts')
   const { isLoading:isLoadingComments, data:comments } = useFetch('comments')
 
@@ -16,15 +17,18 @@ export default function Posts() {
   }
 
   const getSrc = () => {
-    let rand = getRandomInt(5, 10)
+    let rand = getRandomInt(3, 10)
     let src = `https://unsplash.it/${rand}00/${rand}00`
 
     return src
   }
 
+  //get only 5 users
+  users.splice(5, users.length)
+
   return (
-    <div className="posts">{
-      !isLoadingUsers && !isLoadingPosts && !isLoadingComments &&
+    <FlexBox className="posts">{
+      !isLoadingPosts && !isLoadingComments &&
       users.map(user =>
         <Card
           key={user.id}
@@ -33,12 +37,12 @@ export default function Posts() {
           storyBorder={true}
           image={getSrc()}
           comments={comments}
-          likedByText={users[getRandomInt(0, 9)].name}
+          likedByText={users[getRandomInt(0, 4)].name}
           likedByNumber={getRandomInt(0, 100)}
           hours={getRandomInt(0, 12)}
         />
       )
-    }</div>
+    }</FlexBox>
   );
 }
 
