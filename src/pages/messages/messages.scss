@@ -1,3 +1,73 @@
-.messages {
-  margin-top: 4rem;
+@use '../../styles/_properties.scss' as *;
+
+.messages-wrapper {
+  max-width: 935px;
+  margin: 0 auto;
+  margin-top: 5rem;
+  border: 1px solid $border-color-grey;
+  background-color: $background-white;
+
+  .sidebar {
+    min-width: 350px;
+
+    header {
+      justify-content: flex-end;
+      font-weight: 600;
+      padding: 1.3rem 1rem;
+      border-bottom: 1px solid $border-color-grey;
+
+      span {
+        cursor: pointer;
+      }
+    }
+
+    .icon {
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    .write-icon {
+      margin-inline-start: 6rem;
+    }
+
+    .messages {
+      flex-direction: column;
+      max-height: calc(100vh - 10.5rem);
+      overflow: auto;
+
+      .message {
+        padding: 0.5rem 1rem;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $background-grey;
+        }
+      }
+    }
+  }
+
+  .content {
+    justify-content: center;
+    flex-direction: column;
+    width: calc(100% - 350px);
+    min-height: calc(100vh - 10.5rem);
+    border-left: 1px solid $border-color-grey;
+
+    .icon {
+      font-size: 3rem;
+      cursor: pointer;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .messages-wrapper {
+    margin-top: 3rem;
+
+    .sidebar {
+      .messages {
+        max-height: calc(100vh - 7.1rem);
+      }
+    }
+  }
 }

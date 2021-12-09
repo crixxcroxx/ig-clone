@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Modal from 'react-modal';
 
 import FlexBox from './FlexBox';
 import ProfileIcon from './ProfileIcon';
 import profileImage from '../images/profile.jpg';
-import Modal from 'react-modal';
+import Button from './Button';
 
 import { HiHome } from 'react-icons/hi';
 import { RiMessengerLine } from 'react-icons/ri';
@@ -84,7 +85,7 @@ export default function Menu() {
         <FlexBox className="modal-content">
           <BsCloudUpload className="icon" />
           <p>Drag photos and videos here</p>
-          <button>Select from computer</button>
+          <Button primary>Select from computer</Button>
         </FlexBox>
       </Modal>
 

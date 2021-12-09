@@ -23,8 +23,8 @@ export default function Posts() {
     return src
   }
 
-  //get only 5 users
-  users.splice(5, users.length)
+  //get only 3 users
+  users.splice(3, users.length)
 
   return (
     <FlexBox className="posts">{
@@ -37,7 +37,7 @@ export default function Posts() {
           storyBorder={true}
           image={getSrc()}
           comments={comments}
-          likedByText={users[getRandomInt(0, 4)].name}
+          likedByText={users[getRandomInt(0, 2)].name}
           likedByNumber={getRandomInt(0, 100)}
           hours={getRandomInt(0, 12)}
         />

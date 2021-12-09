@@ -68,7 +68,6 @@ const FlexBox = styled(dv).attrs(props => ({
       .sidebar { display: none; }
     }
   `}
-
 `;
 
 export default FlexBox

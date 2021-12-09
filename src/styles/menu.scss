@@ -96,22 +96,6 @@
       font-size: 1.4rem;
     }
 
-    button {
-      width: max-content;
-      margin: 0 auto;
-      padding: 7px 9px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 5px;
-      color: $background-white;
-      background-color: $link-color;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-
     .icon {
       margin-top: -3rem;
       font-size: 5rem;
@@ -138,6 +122,10 @@
 
     .icon {
       font-size: 5rem;
+
+      &:hover {
+        cursor: auto;
+      }
     }
   }
 }
@@ -148,7 +136,7 @@
   height: 198px;
 
   .modal-content {
-    align-items: start;
+    align-items: normal;
     gap: 0;
     padding: 0;
 
