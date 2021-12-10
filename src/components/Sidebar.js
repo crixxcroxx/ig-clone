@@ -1,4 +1,4 @@
-import Profile from './Profile';
+import ProfileCard from './ProfileCard';
 import Suggestions from './Suggestions';
 import Footer from './Footer';
 import profileImage from '../images/profile.jpg';
@@ -7,7 +7,7 @@ import '../styles/sidebar.scss';
 export default function Sidebar() {
   return (
     <div className="sidebar">
-      <Profile
+      <ProfileCard
         username="crixx.croxx"
         caption="Cris Tajesawa"
         captionSize="big"

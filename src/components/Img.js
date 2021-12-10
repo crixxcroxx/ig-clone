@@ -1,13 +1,13 @@
 import { AiFillHeart } from 'react-icons/ai';
 import { IoChatbubbleSharp } from 'react-icons/io5';
 import getRandomInt from '../utils/getRandomInt';
-import './Img.scss';
+import '../styles/img.scss';
 
 export default function Img(props) {
 
   return (
     <div className='img-container'>
-      <img src={props.src} />
+      <img src={props.src} alt='Image'/>
       {props.styledHover &&
         <div className='img-hover'>
           <div className='img-hover-inf'>

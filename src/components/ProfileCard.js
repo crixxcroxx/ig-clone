@@ -3,7 +3,7 @@ import ProfileIcon from './ProfileIcon';
 import users from '../data/users';
 import '../styles/profile.scss';
 
-export default function Profile(props) {
+export default function ProfileCard(props) {
 
   const {
     username,

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import FlexBox from '../../components/FlexBox';
-import Profile from '../../components/Profile';
+import ProfileCard from '../../components/ProfileCard';
 import Button from '../../components/Button';
 
 import { BsChevronDown } from 'react-icons/bs';
@@ -42,7 +42,7 @@ export default function Messages() {
         { !isLoading &&
           users.map( user =>
             <div className="message">
-              <Profile
+              <ProfileCard
                 key={user.id}
                 caption={message[getRandomInt(0, 100)].body.substring(0, 35) + "..."}
                 captionSize="small"
@@ -50,7 +50,7 @@ export default function Messages() {
               />
             </div>
           )/*
-          <Profile
+          <ProfileCard
             caption={message[getRandomInt(0, 100)].body.substring(0, 24) + "..."}
             captionSize="small"
             iconSize="big"

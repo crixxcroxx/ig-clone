@@ -1,4 +1,3 @@
-import FlexBox from '../../components/FlexBox';
 import Img from '../../components/Img';
 import getRandomInt from '../../utils/getRandomInt';
 import './explore.scss';

@@ -1,5 +1,3 @@
-@use '../../styles/_properties.scss' as *;
-
 .explore-wrapper  {
   display: grid;
   grid-template-columns: repeat(3, minmax(105.33px, 292.94px));

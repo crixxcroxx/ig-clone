@@ -1,4 +1,4 @@
-import Profile from './Profile';
+import ProfileCard from './ProfileCard';
 import useFetch from '../hooks/useFetch';
 import getRandomInt from '../utils/getRandomInt';
 import '../styles/suggestions.scss';
@@ -18,7 +18,7 @@ export default function Suggestions() {
 
       <div className="suggestions-list">{
         !isLoading && users.map(user =>
-          <Profile
+          <ProfileCard
             key={user.id}
             username={user.username}
             caption={`Followed by ${getRandomUser()} + ${getRandomInt(1, 15)} more`}

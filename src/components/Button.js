@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import breakpoint from "../utils/breakpoints";
 
 const Button = styled.button`
   width: max-content;

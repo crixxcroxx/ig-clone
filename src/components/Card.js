@@ -1,5 +1,5 @@
 import FlexBox from './FlexBox';
-import Profile from './Profile';
+import ProfileCard from './ProfileCard';
 import CardMenu from './CardMenu';
 import Comment from './Comment';
 
@@ -25,7 +25,7 @@ export default function Card(props) {
   return (
     <div className="card">
       <FlexBox as="header">
-        <Profile username={accountName} storyBorder={storyBorder} iconSize="medium" />
+        <ProfileCard username={accountName} storyBorder={storyBorder} iconSize="medium" />
         <IoEllipsisHorizontalSharp className="ellipsis-icon" />
       </FlexBox>
 
@@ -35,7 +35,7 @@ export default function Card(props) {
         <CardMenu />
 
         <FlexBox className="liked-by">
-          <Profile hideAccountName={true} iconSize="small" />
+          <ProfileCard hideAccountName={true} iconSize="small" />
           <span>Liked by
             <strong className="username">{likedByText}</strong> and
             <strong> {likedByNumber} others</strong>
