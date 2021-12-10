@@ -1,0 +1,14 @@
+@use '../../styles/_properties.scss' as *;
+
+.explore-wrapper  {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(105.33px, 292.94px));
+  justify-content: center;
+  gap: clamp(0.5rem, 2vw, 1rem);
+  margin: 5rem 1rem;
+
+  > *:nth-child(2) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}

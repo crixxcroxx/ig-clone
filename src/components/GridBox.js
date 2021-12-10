@@ -9,14 +9,15 @@ const areasToString = (areas) => {
   return temp.join("' '")
 
 }
-
+/*
 const dv = ({ className, children }) => (
   <div className={className}>
     {children}
   </div>
 );
+*/
 
-const Grid = styled(dv).attrs(props => ({
+const Grid = styled.div.attrs(props => ({
   colCount: props.colCount || 12,
 
   smAreas: props.smAreas || "",

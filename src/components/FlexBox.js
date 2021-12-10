@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import breakpoint from "../utils/breakpoints";
 
+/*
 const dv = ({ className, children }) => (
   <div className={className}>
     {children}
   </div>
 );
+*/
 
-const FlexBox = styled(dv).attrs(props => ({
+const FlexBox = styled.div.attrs(props => ({
   direction: props.row || props.rowRev || props.col || props.colRev,
   wrap: props.wrap || "",
   flow: props.flow || "",
