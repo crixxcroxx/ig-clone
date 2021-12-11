@@ -9,7 +9,7 @@ const dv = ({ className, children }) => (
 );
 */
 
-const FlexBox = styled.div.attrs(props => ({
+const FlexBox = styled.div.attrs((props) => ({
   direction: props.row || props.rowRev || props.col || props.colRev,
   wrap: props.wrap || "",
   flow: props.flow || "",
@@ -33,38 +33,48 @@ const FlexBox = styled.div.attrs(props => ({
   sideHide: props.sideHide || "",
 }))`
   display: flex;
-  flex-direction: ${props => props.direction};
-  flex-wrap: ${props => props.wrap};
-  flex-flow: ${props => props.flow};
+  flex-direction: ${(props) => props.direction};
+  flex-wrap: ${(props) => props.wrap};
+  flex-flow: ${(props) => props.flow};
 
-  justify-content: ${props => props.jusCont};
-  align-content: ${props => props.aliCont};
-  align-items: ${props => props.aliItem};
+  justify-content: ${(props) => props.jusCont};
+  align-content: ${(props) => props.aliCont};
+  align-items: ${(props) => props.aliItem};
 
-  gap: ${props => props.gap};
+  gap: ${(props) => props.gap};
 
-  ${props => props.hide && `
+  ${(props) =>
+    props.hide &&
+    `
     @media (max-width: ${breakpoint.size[props.hide]}) {
       display: none;
     }
   `}
 
-  ${props => props.evenCols && `
+  ${(props) =>
+    props.evenCols &&
+    `
     > * { flex-basis: 100%; }
   `}
 
-  ${props => props.gridish && `
+  ${(props) =>
+    props.gridish &&
+    `
     flex-wrap: wrap;
     > * { flex: 1 1 ${props.cols}; }
   `}
 
-  ${props => props.content_sidebar && `
+  ${(props) =>
+    props.content_sidebar &&
+    `
     flex-wrap: wrap;
     .content { flex: 1 1 ${props.content}%; }
     .sidebar { flex: 1 1 ${props.sidebar}%; }
   `}
 
-  ${props => props.sideHide && `
+  ${(props) =>
+    props.sideHide &&
+    `
     @media (max-width: ${breakpoint.size[props.sideHide] || props.sideHide}) {
       .content { flex-basis: 100%; }
       .sidebar { display: none; }
@@ -72,4 +82,4 @@ const FlexBox = styled.div.attrs(props => ({
   `}
 `;
 
-export default FlexBox
+export default FlexBox;

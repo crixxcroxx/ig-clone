@@ -1,9 +1,9 @@
-import ProfileIcon from './ProfileIcon';
-import '../styles/story.scss';
+import ProfileIcon from "./ProfileIcon";
+import "../styles/story.scss";
 
 export default function Story({ user }) {
-  let accntName = user
-  if(accntName.length > 10) accntName = accntName.substring(0, 10) + "..."
+  let accntName = user;
+  if (accntName.length > 10) accntName = accntName.substring(0, 10) + "...";
 
   return (
     <div className="story">

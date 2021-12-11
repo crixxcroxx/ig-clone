@@ -1,10 +1,10 @@
-import FlexBox from './FlexBox';
+import FlexBox from "./FlexBox";
 
-import { AiOutlineHeart } from 'react-icons/ai';
-import { IoChatbubbleOutline } from 'react-icons/io5';
-import { IoPaperPlaneOutline } from 'react-icons/io5';
-import { BsBookmark } from 'react-icons/bs';
-import '../styles/cardMenu.scss';
+import { AiOutlineHeart } from "react-icons/ai";
+import { IoChatbubbleOutline } from "react-icons/io5";
+import { IoPaperPlaneOutline } from "react-icons/io5";
+import { BsBookmark } from "react-icons/bs";
+import "../styles/cardMenu.scss";
 
 export default function CardMenu() {
   return (

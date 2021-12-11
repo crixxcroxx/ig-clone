@@ -38,7 +38,6 @@
 
       .search-icon {
         opacity: 0.5;
-
       }
 
       input[type="text"] {
@@ -46,9 +45,23 @@
         border: none;
         background: transparent;
 
-        &:focus{
+        &:focus {
           outline: none;
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .nav-wrapper {
+    padding-inline: 0;
+
+    nav {
+      flex: 0 0 0%;
+
+      .logo {
+        display: none;
       }
     }
   }

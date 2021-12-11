@@ -1,10 +1,9 @@
-import FlexBox from './FlexBox';
-import ProfileIcon from './ProfileIcon';
-import users from '../data/users';
-import '../styles/profile.scss';
+import FlexBox from "./FlexBox";
+import ProfileIcon from "./ProfileIcon";
+import users from "../data/users";
+import "../styles/profileCard.scss";
 
 export default function ProfileCard(props) {
-
   const {
     username,
     caption,
@@ -13,12 +12,12 @@ export default function ProfileCard(props) {
     captionSize,
     storyBorder,
     hideAccountName,
-    image
-  } = props
+    image,
+  } = props;
 
   const accntName = username
     ? username
-    : users[Math.floor(Math.random() * users.length)].username
+    : users[Math.floor(Math.random() * users.length)].username;
 
   return (
     <FlexBox className="profile">
@@ -30,9 +29,9 @@ export default function ProfileCard(props) {
       {(accntName || caption) && !hideAccountName && (
         <FlexBox className={`text-container ${captionSize}`}>
           <span className="account-name">{accntName}</span>
-          { caption &&
+          {caption && (
             <span className={`caption ${captionSize}`}>{caption}</span>
-          }
+          )}
         </FlexBox>
       )}
       <a href="/">{urlText}</a>

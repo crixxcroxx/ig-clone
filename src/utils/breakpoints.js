@@ -3,8 +3,8 @@ const size = {
   sm: "600px",
   md: "900px",
   lg: "1200px",
-  xl: "1536px"
-}
+  xl: "1536px",
+};
 
 const device = {
   xs: `min-width: ${size.xs}`,
@@ -12,8 +12,8 @@ const device = {
   md: `min-width: ${size.md}`,
   lg: `min-width: ${size.lg}`,
   xl: `min-width: ${size.xl}`,
-}
+};
 
-const breakpoint = {size, device}
+const breakpoint = { size, device };
 
-export default breakpoint
+export default breakpoint;

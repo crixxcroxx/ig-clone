@@ -69,11 +69,10 @@
   }
 }
 
-
 /* modal styling */
 .post-overlay,
 .notif-overlay,
-.profile-overlay, {
+.profile-overlay {
   position: fixed;
   inset: 0;
   background-color: transparent;
@@ -81,9 +80,9 @@
 }
 
 .post-modal {
-  inset: 50% auto auto 50% ;
-  width: 348px;//minmax(348px, 855px)
-  height: 390px;//minmax(391px, 898px)
+  inset: 50% auto auto 50%;
+  width: 348px; //minmax(348px, 855px)
+  height: 390px; //minmax(391px, 898px)
   margin-right: -50%;
   transform: translate(-50%, -50%);
   border-radius: 12px;
@@ -108,7 +107,7 @@
 }
 
 .post-overlay {
-  background-color: rgba(0,0,0,.85);
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
 .notif-modal {
@@ -141,6 +140,7 @@
     padding: 0;
 
     p {
+      color: $font-color-primary;
       padding: 0.6rem 1rem;
 
       &:hover {
@@ -148,5 +148,13 @@
         background-color: $background-grey;
       }
     }
+  }
+}
+
+@media (max-width: 320px) {
+  .menu {
+    flex: 0 0 0%;
+    justify-content: center;
+    gap: 0.5rem;
   }
 }

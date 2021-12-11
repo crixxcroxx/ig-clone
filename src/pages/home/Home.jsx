@@ -1,11 +1,10 @@
-import FlexBox from '../../components/FlexBox';
-import Posts from '../../components/Posts';
-import Stories from '../../components/Stories';
-import Sidebar from '../../components/Sidebar';
-import './home.scss';
+import FlexBox from "../../components/FlexBox";
+import Posts from "../../components/Posts";
+import Stories from "../../components/Stories";
+import Sidebar from "../../components/Sidebar";
+import "./home.scss";
 
 export default function Home() {
-
   return (
     <FlexBox
       className="home-wrapper"
@@ -24,4 +23,3 @@ export default function Home() {
     </FlexBox>
   );
 }
-

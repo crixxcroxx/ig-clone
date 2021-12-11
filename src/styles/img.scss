@@ -1,4 +1,4 @@
-@use '_properties' as *;
+@use "_properties" as *;
 
 .img-container {
   position: relative;
@@ -29,6 +29,7 @@
 
     .img-hover-inf {
       display: flex;
+      flex-direction: row;
       align-items: center;
       gap: 0.25rem;
       font-size: 0.9rem;

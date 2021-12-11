@@ -9,12 +9,11 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   color: #ffffff;
-  background-color: ${props => props.primary ? `#0095f6` : `#8e8e8e`};
+  background-color: ${(props) => (props.primary ? `#0095f6` : `#8e8e8e`)};
 
   &:hover {
     cursor: pointer;
   }
 `;
 
-export default Button
-
+export default Button;

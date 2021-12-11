@@ -1,4 +1,4 @@
-@use '../../styles/_properties.scss' as *;
+@use "../../styles/_properties.scss" as *;
 
 .messages-wrapper {
   max-width: 935px;
@@ -73,7 +73,7 @@
     }
 
     .content {
-      height: calc(100vh - 3.2rem);;
+      height: calc(100vh - 3.2rem);
     }
   }
 }

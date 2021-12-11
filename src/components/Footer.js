@@ -1,4 +1,4 @@
-import '../styles/footer.scss';
+import "../styles/footer.scss";
 
 export default function Footer() {
   return (
@@ -16,9 +16,7 @@ export default function Footer() {
         <li>Hashtags</li>
         <li>Languages</li>
       </ul>
-      <div className="">
-        © 2021 INSTAGRAM FROM META
-      </div>
+      <div className="">© 2021 INSTAGRAM FROM META</div>
     </footer>
   );
 }
