@@ -1,2 +1,0 @@
-npx onchange "**/*" -- npx prettier --write --ignore-unknown {{changed}}
-npx prettier --write .
