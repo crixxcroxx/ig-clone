@@ -33,11 +33,9 @@ const Grid = styled.div.attrs((props) => ({
   gap: props.gap || "",
 
   hasAreas:
-    props.xsAreas ||
     props.smAreas ||
     props.mdAreas ||
-    props.lgAreas ||
-    props.xlAreas,
+    props.lgAreas
 }))`
   display: grid;
 

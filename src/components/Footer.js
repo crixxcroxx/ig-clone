@@ -1,6 +1,13 @@
 import "../styles/footer.scss";
 
-export default function Footer() {
+export default function Footer(props) {
+  let isCenter = props.center
+  let style = {}
+  if(isCenter) style = {
+    display: "flex",
+    justifyContent: "center"
+  }
+
   return (
     <footer>
       <ul className="links">
@@ -16,7 +23,7 @@ export default function Footer() {
         <li>Hashtags</li>
         <li>Languages</li>
       </ul>
-      <div className="">© 2021 INSTAGRAM FROM META</div>
+      <p style={style}>© 2021 INSTAGRAM FROM META</p>
     </footer>
   );
 }

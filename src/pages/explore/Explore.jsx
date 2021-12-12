@@ -1,4 +1,5 @@
 import Img from "../../components/Img";
+import ImgGallery from "../../components/ImgGallery";
 import getRandomInt from "../../utils/getRandomInt";
 import "./explore.scss";
 
@@ -15,9 +16,11 @@ let counts = [`11`, `22`, `33`, `44`, `55`, `66`, `77`, `88`, `99`, `101`];
 export default function Explore() {
   return (
     <div className="explore-wrapper">
-      {counts.map((count) => (
-        <Img styledHover src={getSrc()} key={count} />
-      ))}
+      <ImgGallery className="gallery">
+        {counts.map((count) => (
+          <Img styledHover src={getSrc()} key={count} />
+        ))}
+      </ImgGallery>
     </div>
   );
 }
