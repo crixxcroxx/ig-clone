@@ -1,0 +1,232 @@
+@use "../../styles/_properties.scss" as *;
+
+.settings-wrapper {
+  max-width: 935px;
+  margin: 0 auto;
+  margin-top: 5rem;
+  font-size: 0.9rem;
+  border: 1px solid $border-color-grey;
+
+  a {
+    font-weight: 600;
+  }
+
+  .sidebar {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: normal;
+    max-width: 250px;
+    border-right: 1px solid $border-color-grey;
+
+    .links {
+      display: flex;
+      flex-direction: column;
+
+      .link {
+        position: relative;
+        margin: 0;
+        padding: 1rem 2rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $border-color-grey-secondary;
+        }
+      }
+
+      .switch-link {
+        margin-inline-start: 2rem;
+      }
+    }
+
+    .active {
+      font-weight: 600;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: -1px 0 0 0;
+        width: 3px;
+        height: 100%;
+        background-color: $font-color-primary;
+      }
+    }
+
+    .meta-container {
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: $font-color-secondary;
+      border-top: 1px solid $border-color-grey;
+    }
+  }
+
+  .content {
+    flex: 1 1 calc(100vw - 685px);
+    margin-block: 2rem;
+
+    p {
+      margin: 0;
+    }
+
+    > * {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .profile {
+
+      .name {
+        font-size: 1.2rem;
+      }
+
+      a {
+        font-size: 0.9rem;
+      }
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: max-content minmax(max-content, 300px);
+
+      label {
+        justify-self: end;
+        font-weight: 600;
+      }
+
+      input {
+        padding: 0.25rem;
+      }
+
+      /*input[type=checkbox] {
+        padding: 0.25rem;
+      }*/
+
+      .icon {
+        justify-self: end;
+      }
+
+      .caption {
+
+        .name {
+          font-size: 1.2rem;
+        }
+      }
+
+      .add-info {
+        width: 300px;
+        overflow-wrap: break-word;
+        color: $font-color-secondary;
+
+        a {
+          font-weight: normal;
+          font-size: 0.8rem;
+        }
+      }
+
+      .name {
+        align-self: start;
+        display: flex;
+        flex-direction: column;
+
+        .details {
+          margin-top: 1rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      .username {
+        align-self: start;
+        display: flex;
+        flex-direction: column;
+
+        .details {
+          margin-top: 1rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      .bio {
+        align-self: start;
+        display: flex;
+        flex-direction: column;
+
+        .header {
+          margin-top: 2rem;
+          font-weight: 600;
+        }
+
+        .details {
+          font-size: 0.8rem;
+        }
+      }
+
+      label.suggest {
+        width: 80px;
+        text-align: right;
+      }
+      .suggest {
+        align-self: start;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+
+        .add-info {
+          color: $font-color-primary;
+          font-weight: 600;
+        }
+      }
+
+      .submit {
+        grid-column: 2 / -1;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .settings-wrapper {
+    .sidebar {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .settings-wrapper {
+    .content {
+      form {
+        grid-template-columns: 1fr;
+        margin-inline: 1rem;
+
+        label, .icon, .caption {
+          text-align: left;
+          justify-self: left;
+        }
+
+        label.suggest {
+          width: 100%;
+          text-align: center;
+        }
+
+        .add-info {
+          width: 100%;
+        }
+
+        .submit {
+          grid-column: 1;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
+
