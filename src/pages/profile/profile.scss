@@ -11,10 +11,10 @@
     align-items: center;
     gap: 1rem;
     /*max-width: 600px;*/
-    margin: 0 4rem;
+    margin: 6rem 4rem 3rem 4rem;
 
     .profile-icon-container {
-      margin-right: 2rem;
+      margin-right: 4rem;
 
       .hide-md {
         display: none;
@@ -22,7 +22,7 @@
     }
 
     .username {
-      font-size: 1.5rem;
+      font-size: 1.7rem;
     }
 
     .icon {
@@ -98,10 +98,6 @@
 
         .hide-sm {
           display: none;
-        }
-
-        .edit-btn {
-          width: 100%;
         }
       }
     }

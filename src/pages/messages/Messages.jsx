@@ -20,6 +20,7 @@ export default function Messages() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
+    console.log(data)
     setMessage(data);
   }, [data]);
 

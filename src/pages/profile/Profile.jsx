@@ -52,14 +52,14 @@ export default function Profile() {
             <ProfileIcon iconSize="huge" image={profileImage} />
           </div>
           <div className="hide-md">
-            <ProfileIcon iconSize="big" image={profileImage} />
+            <ProfileIcon iconSize="xtra-L" image={profileImage} />
           </div>
         </GridItem>
 
         <GridItem className="username" area="username">jun.nujj</GridItem>
 
         <GridItem area="button">
-          <Button className="edit-btn" white>Edit Profile</Button>
+          <Button className="edit-btn" width="100%" white>Edit Profile</Button>
         </GridItem>
 
         <GridItem area="icon">

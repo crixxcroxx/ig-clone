@@ -141,12 +141,14 @@ export default function Menu() {
             </span>{" "}
             Saved
           </p>
-          <p>
-            <span>
-              <BsGearWide className="icon" />
-            </span>{" "}
-            Settings
-          </p>
+          <Link to="/settings">
+            <p>
+              <span>
+                <BsGearWide className="icon" />
+              </span>{" "}
+              Settings
+            </p>
+          </Link>
           <p>
             <span>
               <AiOutlineSync className="icon" />
