@@ -1,0 +1,7 @@
+@use "../../styles/properties" as *;
+
+.posts {
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}

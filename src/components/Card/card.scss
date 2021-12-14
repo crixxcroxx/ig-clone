@@ -1,0 +1,140 @@
+@use "../../styles/properties" as *;
+
+.card {
+  align-content: flex-start;
+  width: 100%;
+  font-size: 0.9rem;
+  color: $font-color-primary;
+  border-radius: 3px;
+  border: 1px solid $border-color-grey;
+  background-color: $background-white;
+
+  header {
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+
+    .profile {
+      margin-bottom: 0;
+    }
+
+    .ellipsis-icon {
+      font-size: 1.2rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .card-image {
+    display: block;
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .card-desc {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-inline: 1rem;
+
+    .liked-by {
+      .username {
+        margin-left: 0.3rem;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      strong {
+        cursor: pointer;
+      }
+
+      span {
+        margin-left: 0.3rem;
+      }
+    }
+
+    .user-post-desc {
+      .username {
+        margin-right: 0.3rem;
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+      .more-text {
+        color: $font-color-secondary;
+        cursor: pointer;
+      }
+    }
+
+    .view-all-comments {
+      color: $font-color-secondary;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .comments {
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .time-posted {
+      font-size: 0.6rem;
+      color: $font-color-secondary;
+    }
+  }
+
+  .card-footer {
+    .add-comment {
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding: 1rem;
+      border-top: 1px solid $border-color-grey-secondary;
+
+      .comment-input {
+        gap: 1rem;
+        color: $font-color-secondary;
+
+        .comment-text {
+          flex-grow: 1;
+          outline: none;
+          resize: none;
+          border: none;
+        }
+
+        .emoji-icon {
+          font-size: 1.6rem;
+          color: $font-color-primary;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .post-text {
+        color: $link-color-secondary;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card {
+    border: none;
+    background-color: $background-grey;
+    margin-bottom: 0.75rem;
+
+    .add-comment {
+      display: none;
+    }
+  }
+}

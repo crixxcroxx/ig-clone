@@ -1,0 +1,29 @@
+@use "../../styles/properties" as *;
+
+.card-menu {
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 1.6rem;
+  margin: 1rem 0 0.5rem 0;
+
+  .interactions {
+    display: flex;
+    gap: 1rem;
+
+    .heart-icon {
+      font-size: 1.75rem;
+    }
+  }
+
+  .icon {
+    &:hover {
+      color: $font-color-secondary;
+      cursor: pointer;
+    }
+  }
+
+  .bookmark-icon {
+    margin-top: 3px;
+    font-size: 1.4rem;
+  }
+}

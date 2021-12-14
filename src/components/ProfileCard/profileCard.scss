@@ -1,0 +1,41 @@
+@use "../../styles/properties" as *;
+
+.profile {
+  font-size: 0.8rem;
+
+  .text-container {
+    flex: 1 1 0;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+    color: $font-color-primary;
+
+    &.big {
+      margin-left: 1rem;
+    }
+
+    .account-name {
+      font-weight: 600;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+
+    .caption {
+      color: $font-color-secondary;
+
+      &.small {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  a {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+}
