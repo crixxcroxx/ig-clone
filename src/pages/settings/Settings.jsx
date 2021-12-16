@@ -54,7 +54,8 @@ export default function Settings() {
           <div className="name">
             <input type="text" id="name" name="name" />
             <div className="add-info">
-              <p className="details">Helps people discover yoru account by using the name you're known by: either your full name, nickname or business name.<br />
+              <p className="details">Helps people discover your account by using the name you're known by: either your full name, nickname or business name.
+              <br /><br />
               <span>You can only change your name twice within 14 days.</span></p>
             </div>
           </div>
