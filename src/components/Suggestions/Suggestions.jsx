@@ -1,15 +1,10 @@
 import ProfileCard from "../ProfileCard";
-import useFetch from "../../hooks/useFetch";
 import getRandomInt from "../../utils/getRandomInt";
+import users from "../../data/users";
 import "./suggestions.scss";
 
 export default function Suggestions() {
-  const { isLoading, data } = useFetch("users");
-  let users = data;
-  users.splice(5, 10);
-  let getRandomUser = () => {
-    return data[getRandomInt(0, 4)].username;
-  };
+  let reducedUsers = ["1s1", "2s2", "3s3", "4s4", "5s5"]
 
   return (
     <div className="suggestions">
@@ -23,21 +18,20 @@ export default function Suggestions() {
       </div>
 
       <div className="suggestions-list">
-        {!isLoading &&
-          users.map((user) => (
-            <ProfileCard
-              key={user.id}
-              username={user.username}
-              caption={`Followed by ${getRandomUser()} + ${getRandomInt(
-                1,
-                15
-              )} more`}
-              captionSize="small"
-              urlText="Follow"
-              iconSize="medium"
-              storyBorder={false}
-            />
-          ))}
+        {reducedUsers.map(user =>
+          <ProfileCard
+            key={users[getRandomInt(0, (users.length - 1))].id}
+            username={users[getRandomInt(0, (users.length - 1))].username}
+            caption={`Followed by
+              ${users[getRandomInt(0, (users.length - 1))].username} +
+              ${getRandomInt(1,15)} more`
+            }
+            captionSize="small"
+            urlText="Follow"
+            iconSize="medium"
+            storyBorder={false}
+          />
+        )}
       </div>
     </div>
   );

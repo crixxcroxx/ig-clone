@@ -4,6 +4,7 @@ import CardMenu from "../CardMenu";
 import Comment from "../Comment";
 
 import getRandomInt from "../../utils/getRandomInt";
+import useFetch from "../../hooks/useFetch";
 
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import { AiOutlineSmile } from "react-icons/ai";
@@ -11,12 +12,13 @@ import { AiOutlineSmile } from "react-icons/ai";
 import "./card.scss";
 
 export default function Card(props) {
+  const { data: comments, loading, error } = useFetch("comments");
+
   const {
     accountName,
     post,
     storyBorder,
     image,
-    comments,
     likedByText,
     likedByNumber,
     hours,
@@ -63,20 +65,17 @@ export default function Card(props) {
         )} comments`}</div>
 
         <FlexBox className="comments" aliItem="normal">
-          <Comment
-            key={comments[getRandomInt(0, 500)].id}
-            accountName={comments[getRandomInt(0, 500)].email.split("@")[0]}
-            comment={
-              comments[getRandomInt(0, 500)].body.substring(0, 50) + "..."
-            }
-          />
-          <Comment
-            key={comments[getRandomInt(0, 500)].id}
-            accountName={comments[getRandomInt(0, 500)].email.split("@")[0]}
-            comment={
-              comments[getRandomInt(0, 500)].body.substring(0, 50) + "..."
-            }
-          />
+          {loading && <div>Loading</div>}
+          {error && <div>Something went wrong!</div>}
+          {!loading && !error &&
+            <Comment
+              key={comments[getRandomInt(0, 500)].id}
+              accountName={comments[getRandomInt(0, 500)].email.split("@")[0]}
+              comment={
+                comments[getRandomInt(0, 500)].body.substring(0, 50) + "..."
+              }
+            />
+          }
         </FlexBox>
 
         <div className="time-posted">{hours} HOURS AGO</div>

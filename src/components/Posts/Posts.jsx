@@ -6,15 +6,7 @@ import users from "../../data/users";
 import "./posts.scss";
 
 export default function Posts() {
-  const { isLoading: isLoadingPosts, data: posts } = useFetch("posts");
-  const { isLoading: isLoadingComments, data: comments } = useFetch("comments");
-
-  function getPost(uId) {
-    let rand = getRandomInt(0, 9);
-    let idx = posts.findIndex((post) => post.userId === uId);
-
-    return posts[idx + rand];
-  }
+  const { data: posts, loading, error } = useFetch("posts");
 
   const getSrc = () => {
     let rand = getRandomInt(3, 10);
@@ -23,26 +15,27 @@ export default function Posts() {
     return src;
   };
 
-  //get only 3 users
-  users.splice(3, users.length);
+  //get only 3 random users
+  let reducedUsers = [121, 131, 141]
 
   return (
     <FlexBox className="posts">
-      {!isLoadingPosts &&
-        !isLoadingComments &&
-        users.map((user) => (
+      {loading && <div>Loading</div>}
+      {error && <div>Something went wrong!</div>}
+      {!loading && !error &&
+        reducedUsers.map((user) => (
           <Card
-            key={user.id}
-            accountName={user.username}
-            post={getPost(user.id)}
+            key={user}
+            accountName={users[getRandomInt(0, (users.length - 1))].username}
+            post={posts[getRandomInt(0, (posts.length - 1))]}
             storyBorder={true}
             image={getSrc()}
-            comments={comments}
-            likedByText={users[getRandomInt(0, 2)].name}
+            likedByText={users[getRandomInt(0, (users.length - 1))].name}
             likedByNumber={getRandomInt(0, 100)}
             hours={getRandomInt(0, 12)}
           />
-        ))}
+        ))
+      }
     </FlexBox>
   );
 }

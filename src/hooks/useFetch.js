@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
-export default function useFetch(route) {
-  const baseUrl = "https://jsonplaceholder.typicode.com";
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const fetchData = async () => {
-    let res = await fetch(`${baseUrl}/${route}`).catch((err) =>
-      console.error(err)
-    );
-    let resData = await res.json().catch((err) => console.error(err));
-
-    setData(resData);
-    setIsLoading(false);
-  };
+export default function useFetch(endpoint) {
+  const BASE_URL = "https://jsonplaceholder.typicode.com";
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    setLoading(true);
+    axios
+      .get(`${BASE_URL}/${endpoint}`)
+      .then((res) => {
+        console.log(res)
+        setData(res.data)
+      })
+      .catch((err) => setError(err))
+      .finally(() => setLoading(false))
+  }, [endpoint])
 
-  return { isLoading, data };
+  return { data, loading, error };
 }

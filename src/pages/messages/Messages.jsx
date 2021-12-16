@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import FlexBox from "../../components/FlexBox";
 import ProfileCard from "../../components/ProfileCard";
 import Button from "../../components/Button";
@@ -16,13 +14,7 @@ import "./messages.scss";
 
 export default function Messages() {
   /* i'll be getting messages from posts endpoint */
-  const { isLoading, data } = useFetch("posts");
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    console.log(data)
-    setMessage(data);
-  }, [data]);
+  const { data: message, loading, error } = useFetch("posts");
 
   return (
     <FlexBox className="messages-wrapper" content_sidebar aliItem="normal">
@@ -36,26 +28,22 @@ export default function Messages() {
         </FlexBox>
 
         <FlexBox className="messages" aliItem="normal">
-          {
-            !isLoading &&
-              users.map((user) => (
-                <div className="message">
-                  <ProfileCard
-                    key={user.id}
-                    caption={
-                      message[getRandomInt(0, 100)].body.substring(0, 35) +
-                      "..."
-                    }
-                    captionSize="small"
-                    iconSize="big"
-                  />
-                </div>
-              )) /*
-          <ProfileCard
-            caption={message[getRandomInt(0, 100)].body.substring(0, 24) + "..."}
-            captionSize="small"
-            iconSize="big"
-          />*/
+          {loading && <div>Loading</div>}
+          {error && <div>Something went wrong!</div>}
+          {!loading && !error &&
+            users.map((user) => (
+              <div className="message">
+                <ProfileCard
+                  key={user.id}
+                  caption={
+                    message[getRandomInt(0, 100)].body.substring(0, 35) +
+                    "..."
+                  }
+                  captionSize="small"
+                  iconSize="big"
+                />
+              </div>
+            ))
           }
         </FlexBox>
       </div>
