@@ -10,6 +10,8 @@
   background-color: $background-white;
 
   header {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 0.75rem 1rem;
 
@@ -26,9 +28,18 @@
     }
   }
 
-  .card-image {
+  .card-body {
     display: block;
-    width: 100%;
+
+    .csection-container {
+      max-height: 300px;
+      overflow: auto;
+      cursor: auto;
+    }
+
+    img {
+      width: 100%;
+    }
 
     &:hover {
       cursor: pointer;
@@ -36,11 +47,15 @@
   }
 
   .card-desc {
+    display: flex;
     flex-direction: column;
     gap: 0.5rem;
     padding-inline: 1rem;
 
     .liked-by {
+      display: flex;
+      align-items: center;
+
       .username {
         margin-left: 0.3rem;
 
@@ -93,21 +108,30 @@
   }
 
   .card-footer {
+
     .add-comment {
+      display: flex;
+      align-items: center;
       justify-content: space-between;
       margin-top: 1rem;
       padding: 1rem;
       border-top: 1px solid $border-color-grey-secondary;
 
       .comment-input {
+        display: flex;
+        align-items: center;
         gap: 1rem;
         color: $font-color-secondary;
 
         .comment-text {
           flex-grow: 1;
+          height: 1.6rem;
           outline: none;
           resize: none;
           border: none;
+          font-size: 0.9rem;
+          font-family: inherit;
+          color: $font-color-primary;
         }
 
         .emoji-icon {
@@ -125,6 +149,10 @@
       }
     }
   }
+}
+
+.no-border {
+  border: none;
 }
 
 @media only screen and (max-width: 600px) {

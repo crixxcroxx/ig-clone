@@ -2,6 +2,7 @@ import FlexBox from "../FlexBox";
 import ProfileCard from "../ProfileCard";
 import CardMenu from "../CardMenu";
 import Comment from "../Comment";
+import CommentSection from "../CommentSection";
 
 import getRandomInt from "../../utils/getRandomInt";
 import useFetch from "../../hooks/useFetch";
@@ -16,87 +17,111 @@ export default function Card(props) {
 
   const {
     accountName,
+    accountImage,
     post,
     storyBorder,
-    image,
+    postImage,
+    commentSection,
     likedByText,
     likedByNumber,
     hours,
   } = props;
 
   return (
-    <div className="card">
-      <FlexBox as="header">
+    <div className={`card ${commentSection && "no-border"}`}>
+      <header>
         <ProfileCard
           username={accountName}
+          image={accountImage}
           storyBorder={storyBorder}
           iconSize="medium"
         />
         <IoEllipsisHorizontalSharp className="ellipsis-icon" />
-      </FlexBox>
+      </header>
 
-      <img className="card-image" src={image} alt="Card Content" />
+      <div className="card-body">
+        {/* display image when image is passed as prop
+            else display the comment section */}
 
-      <FlexBox className="card-desc" aliItem="normal">
+        {postImage && <img src={postImage} alt="Card Content" />}
+        {commentSection &&
+          <div className="csection-container">
+            <CommentSection
+              username={accountName}
+              accountImage={accountImage}
+              post={post.body}
+              isCommentSection={true}
+            />
+          </div>
+        }
+      </div>
+
+      <div className="card-desc">
         <CardMenu />
 
-        <FlexBox className="liked-by">
+        <div className="liked-by">
           <ProfileCard hideAccountName={true} iconSize="small" />
           <span>
             Liked by
             <strong className="username">{likedByText}</strong> and
             <strong> {likedByNumber} others</strong>
           </span>
-        </FlexBox>
-
-        <div className="user-post-desc">
-          <strong className="username">{accountName}</strong>
-          {post.body.length > 45 && (
-            <>
-              {post.body.substring(0, 45)}
-              <span className="more-text">...more</span>
-            </>
-          )}
         </div>
 
-        <div className="view-all-comments">{`View all ${getRandomInt(
-          3,
-          50
-        )} comments`}</div>
+        {!commentSection &&
+          <div className="user-post-desc">
+            <strong className="username">{accountName}</strong>
+            {post.body.length > 45 && (
+              <>
+                {post.body.substring(0, 45)}
+                <span className="more-text">...more</span>
+              </>
+            )}
+          </div>
+        }
 
-        <FlexBox className="comments" aliItem="normal">
-          {loading && <div>Loading</div>}
-          {error && <div>Something went wrong!</div>}
-          {!loading && !error &&
-            <Comment
-              key={comments[getRandomInt(0, 500)].id}
-              accountName={comments[getRandomInt(0, 500)].email.split("@")[0]}
-              comment={
-                comments[getRandomInt(0, 500)].body.substring(0, 50) + "..."
-              }
-            />
-          }
-        </FlexBox>
+        {/* display preview comment when postImage is passed as prop */}
+        {postImage &&
+          <>
+          <div className="view-all-comments">{
+            `View all ${getRandomInt(3, 50)} comments`
+          }</div>
+
+          <FlexBox className="comments" aliItem="normal">
+            {loading && <div>Loading</div>}
+            {error && <div>Something went wrong!</div>}
+            {!loading && !error &&
+              <Comment
+                key={comments[getRandomInt(0, 500)].id}
+                accountName={comments[getRandomInt(0, 500)].email.split("@")[0]}
+                comment={
+                  comments[getRandomInt(0, 500)].body.substring(0, 50) + "..."
+                }
+              />
+            }
+          </FlexBox>
+          </>
+        }
 
         <div className="time-posted">{hours} HOURS AGO</div>
-      </FlexBox>
+      </div>
 
-      <FlexBox className="card-footer">
-        <FlexBox className="add-comment">
-          <FlexBox className="comment-input">
+      <div className="card-footer">
+        <div className="add-comment">
+          <div className="comment-input">
             <AiOutlineSmile className="emoji-icon" />
             <textarea
               className="comment-text"
               placeholder="Add a comment…"
-              cols="51"
+              cols={commentSection ? "28" : "51"}
               rows="1"
               autoComplete="off"
               autoCorrect="off"
             ></textarea>
-          </FlexBox>
+          </div>
           <strong className="post-text">Post</strong>
-        </FlexBox>
-      </FlexBox>
+        </div>
+      </div>
     </div>
   );
 }

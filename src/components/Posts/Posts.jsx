@@ -23,7 +23,7 @@ export default function Posts() {
             accountName={users[getRandomInt(0, (users.length - 1))].username}
             post={posts[getRandomInt(0, (posts.length - 1))]}
             storyBorder={true}
-            image={getRandomPostImg(3, 10)}
+            postImage={getRandomPostImg(3, 10)}
             likedByText={users[getRandomInt(0, (users.length - 1))].name}
             likedByNumber={getRandomInt(0, 100)}
             hours={getRandomInt(0, 12)}
