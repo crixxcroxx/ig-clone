@@ -1,12 +1,18 @@
 @use "../../styles/properties" as *;
 
 .profile {
+  display: flex;
+  align-items: center;
   font-size: 0.8rem;
+
+  .align-start {
+    align-self: flex-start;
+  }
 
   .text-container {
     flex: 1 1 0;
+    display: flex;
     flex-direction: column;
-    align-items: start;
     gap: 5px;
     margin-left: 0.5rem;
     font-size: 0.9rem;
@@ -29,7 +35,7 @@
       color: $font-color-secondary;
 
       &.small {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
       }
     }
   }

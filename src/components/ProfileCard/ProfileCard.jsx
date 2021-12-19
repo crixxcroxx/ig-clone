@@ -1,40 +1,52 @@
-import FlexBox from "../FlexBox";
+import { useContext } from "react";
+
 import ProfileIcon from "../ProfileIcon";
-import users from "../../data/users";
+
+import UsersContext from "../../context/UsersContext";
 import "./profileCard.scss";
 
 export default function ProfileCard(props) {
   const {
-    username,
-    caption,
-    urlText,
+    userIndex,
     iconSize,
+    caption,
     captionSize,
-    storyBorder,
-    hideAccountName,
-    image,
+    urlText,
+    isSuggestion
   } = props;
 
-  const accntName = username
-    ? username
-    : users[Math.floor(Math.random() * users.length)].username;
+  const { database } = useContext(UsersContext)
+  const user = database.results[userIndex]
+
+  let imageSize = ""
+
+    if (iconSize === "xSmall" || iconSize === "small") {
+      imageSize = "thumbnail"
+    } else if(iconSize === "medium" || iconSize === "large") {
+      imageSize = "medium"
+    } else if(iconSize === "huge") {
+      imageSize = "large"
+    }
 
   return (
-    <FlexBox className="profile">
+    <div className="profile">
+      <div className={`${isSuggestion && "align-start"}`}>
       <ProfileIcon
+        image={user.picture[imageSize]}
         iconSize={iconSize}
-        image={image}
-        storyBorder={storyBorder}
       />
-      {(accntName || caption) && !hideAccountName && (
-        <FlexBox className={`text-container ${captionSize}`}>
-          <span className="account-name">{accntName}</span>
-          {caption && (
-            <span className={`caption ${captionSize}`}>{caption}</span>
-          )}
-        </FlexBox>
-      )}
+      </div>
+
+      <div className={`text-container ${captionSize}`}>
+        <span className="account-name">
+          {user.login.username}
+        </span>
+        {caption && (
+          <span className={`caption ${captionSize}`}>{caption}</span>
+        )}
+      </div>
+
       <a href="/">{urlText}</a>
-    </FlexBox>
+    </div>
   );
 }

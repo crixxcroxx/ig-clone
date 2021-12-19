@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Modal from "react-modal";
 
 import Card from "../Card";
@@ -6,19 +6,30 @@ import Card from "../Card";
 import { AiFillHeart } from "react-icons/ai";
 import { IoChatbubbleSharp } from "react-icons/io5";
 
-import useFetch from "../../hooks/useFetch";
 import getRandomInt from "../../utils/getRandomInt";
-import users from "../../data/users";
+import UsersContext from "../../context/UsersContext";
+
 import "./img.scss";
 
 Modal.setAppElement(document.getElementById("root"));
 
 export default function Img(props) {
+  const {
+    styledHover,
+    posterIndex,
+    src
+  } = props;
+
+  const { database } = useContext(UsersContext)
+
+  const likedByIndex = getRandomInt(1, (database.results.length - 1))
+  const likedByNumber = getRandomInt(1, 100)
+  const hrsPosted = getRandomInt(1, 24)
+  const heartReacts = getRandomInt(1, 500)
+  const numComments = getRandomInt(1, 500)
+
+  /*modals*/
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data: posts, loading, error } = useFetch("posts");
-  /* rand user image */
-  const randomId = getRandomInt(1, 70);
-  const avatarImgUrl = `https://i.pravatar.cc/150?img=${randomId}`;
 
   function openModal() {
     setIsModalOpen(true);
@@ -40,42 +51,31 @@ export default function Img(props) {
       contentLabel="Image Modal"
     >
     <div className="modal-content">
-      <img className="post-img" src={props.src} alt="modal-img" />
+      <img className="post-img" src={src} alt="modal-img" />
       <div className="post-info">
-        {loading && <div>Loading</div>}
-        {error && <div>Something went wrong!</div>}
-        {!loading && !error &&
-          <Card
-            key={users[getRandomInt(0, (users.length - 1))].id}
-            accountName={users[getRandomInt(0, (users.length - 1))].username}
-            accountImage={avatarImgUrl}
-            likedByText={users[getRandomInt(0, (users.length - 1))].name}
-            likedByNumber={getRandomInt(0, 100)}
-            hours={getRandomInt(0, 12)}
-            commentSection={true}
-            post={
-              props.posts
-                ? props.posts
-                : posts[getRandomInt(0, (posts.length - 1))]
-            }
-          />
-        }
+        <Card
+          posterIndex={posterIndex}
+          likedByIndex={likedByIndex}
+          likedByNumber={likedByNumber}
+          hrsPosted={hrsPosted}
+          commentSectionAsBody={true}
+        />
       </div>
     </div>
     </Modal>
 
     <div className="img-container" onClick={openModal}>
-      <img src={props.src} alt="user-img" />
+      <img src={src} alt="user-img" />
 
-      {props.styledHover && (
+      {styledHover && (
         <div className="img-hover">
           <div className="img-hover-inf">
             <AiFillHeart className="icon" />
-            <span>{getRandomInt(1, 500)}</span>
+            <span>{heartReacts}</span>
           </div>
           <div className="img-hover-inf">
             <IoChatbubbleSharp className="icon" />
-            <span>{getRandomInt(1, 500)}</span>
+            <span>{numComments}</span>
           </div>
         </div>
       )}
@@ -84,3 +84,4 @@ export default function Img(props) {
     </>
   );
 }
+

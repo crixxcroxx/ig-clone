@@ -5,9 +5,10 @@ import { IoSearch } from "react-icons/io5";
 import "./nav.scss";
 
 export default function Nav() {
+
   return (
     <FlexBox jusCont="center" className="nav-wrapper">
-      <FlexBox as="nav">
+      <nav>
         <div className="logo">
           <img src={igIcon} alt="Instagram" />
         </div>
@@ -18,7 +19,7 @@ export default function Nav() {
         </FlexBox>
 
         <Menu />
-      </FlexBox>
+      </nav>
     </FlexBox>
   );
 }

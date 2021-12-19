@@ -1,6 +1,7 @@
 @use "../../styles/_properties.scss" as *;
 
 .messages-wrapper {
+  align-items: normal;
   max-width: 935px;
   margin: 0 auto;
   margin-top: 5rem;
@@ -9,7 +10,9 @@
   background-color: $background-white;
 
   .sidebar {
-    min-width: 350px;
+    flex-direction: column;
+    align-items: normal;
+    max-width: 350px;
 
     header {
       justify-content: flex-end;
@@ -32,6 +35,7 @@
     }
 
     .messages {
+      display: flex;
       flex-direction: column;
       max-height: calc(100vh - 10.5rem);
       overflow: auto;

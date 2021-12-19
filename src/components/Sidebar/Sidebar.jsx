@@ -1,19 +1,22 @@
+import { useContext } from "react";
+
 import ProfileCard from "../ProfileCard";
 import Suggestions from "../Suggestions";
 import Footer from "../Footer";
-import profileImage from "../../images/profile.jpg";
+
+import UsersContext from "../../context/UsersContext";
+
 import "./sidebar.scss";
 
 export default function Sidebar() {
+  const { loggedUserIndex } = useContext(UsersContext)
+
   return (
     <div className="sidebar">
       <ProfileCard
-        username="crixx.croxx"
-        caption="Cris Tajesawa"
-        captionSize="big"
+        userIndex={loggedUserIndex}
+        iconSize="medium"
         urlText="Switch"
-        iconSize="big"
-        image={profileImage}
       />
       <Suggestions />
       <Footer />

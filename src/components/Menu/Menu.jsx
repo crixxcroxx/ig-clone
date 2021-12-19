@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
 
 import FlexBox from "../FlexBox";
 import ProfileIcon from "../ProfileIcon";
-import profileImage from "../../images/profile.jpg";
 import Button from "../Button";
 
 import { HiHome } from "react-icons/hi";
@@ -25,11 +24,18 @@ import { BsBookmark } from "react-icons/bs";
 import { BsGearWide } from "react-icons/bs";
 import { AiOutlineSync } from "react-icons/ai";
 
+//context
+import UsersContext from "../../context/UsersContext";
+
 import "./menu.scss";
 
 Modal.setAppElement(document.getElementById("root"));
 
 export default function Menu() {
+  /*user*/
+  const { database, loggedUserIndex } = useContext(UsersContext);
+
+  /*modals*/
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
   const [isNotifBubbleOpen, setIsNotifBubbleOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -199,9 +205,8 @@ export default function Menu() {
         onClick={(e) => openProfileMenu(e)}
       >
         <ProfileIcon
-          iconSize="small"
-          image={profileImage}
-          storyBorder={false}
+          iconSize="xSmall"
+          image={database.results[loggedUserIndex].picture.thumbnail}
         />
       </i>
     </FlexBox>

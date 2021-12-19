@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import FlexBox from "../../components/FlexBox";
 import ProfileCard from "../../components/ProfileCard";
 import Button from "../../components/Button";
@@ -8,45 +10,48 @@ import { IoPaperPlaneOutline } from "react-icons/io5";
 
 import useFetch from "../../hooks/useFetch";
 import getRandomInt from "../../utils/getRandomInt";
-import users from "../../data/users";
+
+import UsersContext from "../../context/UsersContext";
 
 import "./messages.scss";
 
 export default function Messages() {
-  /* i'll be getting messages from posts endpoint */
-  const { data: message, loading, error } = useFetch("posts");
+  const { data: message, loading, error } = useFetch();
+
+  const { database, loggedUserIndex } = useContext(UsersContext)
 
   return (
-    <FlexBox className="messages-wrapper" content_sidebar aliItem="normal">
-      <div className="sidebar">
+    <FlexBox className="messages-wrapper" content_sidebar>
+      <FlexBox className="sidebar">
         <FlexBox as="header">
           <FlexBox>
-            <span>crixx.croxx &nbsp;</span>
+            <span>
+              {database.results[loggedUserIndex].login.username}
+              &nbsp;
+            </span>
             <BsChevronDown className="icon" />
           </FlexBox>
           <BsPencilSquare className="icon write-icon" />
         </FlexBox>
 
-        <FlexBox className="messages" aliItem="normal">
+        <div className="messages">
           {loading && <div>Loading</div>}
           {error && <div>Something went wrong!</div>}
           {!loading && !error &&
-            users.map((user) => (
+            database.results.map(user => (
               <div className="message">
                 <ProfileCard
-                  key={user.id}
-                  caption={
-                    message[getRandomInt(0, 100)].body.substring(0, 35) +
-                    "..."
-                  }
+                  key={user.id.value}
+                  userIndex={getRandomInt(1, (database.results.length - 1))}
+                  iconSize="medium"
+                  caption={message}
                   captionSize="small"
-                  iconSize="big"
                 />
               </div>
             ))
           }
-        </FlexBox>
-      </div>
+        </div>
+      </FlexBox>
 
       <FlexBox className="content">
         <IoPaperPlaneOutline className="icon" />

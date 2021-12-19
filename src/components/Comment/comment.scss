@@ -14,6 +14,7 @@
   .user {
     flex-grow: 1;
     flex-shrink: 1;
+    word-break: break-all;
     overflow-wrap: break-word;
 
     .user-name {
@@ -52,15 +53,13 @@
 
   .user-icon {
     margin-right: 0.5rem;
-  }
-
-  .align-icon-start {
     align-self: flex-start;
   }
 
   .heart-icon {
     font-size: 0.85rem;
     font-weight: bold;
+    margin-inline-start: 0.5rem;
 
     &:hover {
       cursor: pointer;

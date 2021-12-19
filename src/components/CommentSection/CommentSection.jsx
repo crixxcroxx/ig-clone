@@ -1,35 +1,36 @@
-import useFetch from "../../hooks/useFetch";
+import { useContext } from "react";
+
 import Comment from "../Comment";
+
 import getRandomInt from "../../utils/getRandomInt";
-import users from "../../data/users";
+
+import UsersContext from "../../context/UsersContext";
+
 import "./commentSection.scss";
 
 export default function CommentSection(props) {
-  const { data: comments, loading, error } = useFetch("comments");
+  const { posterIndex } = props
+
+  const { database } = useContext(UsersContext)
 
   //temp number of comments
   const reducedComments = [1121, 1131, 1141, 1242, 6458, 2487, 2132, 6548]
 
   return (
     <div className="comment-section">
-      <div>
+      <div className="user-post-body">
         <Comment
-          accountName={props.username}
-          comment={props.post}
-          accountImage={props.accountImage}
-          poster={true}
-          isCommentSection={props.isCommentSection}
+          commenterIndex={posterIndex}
+          isPoster={true}
+          isCommentSection={true}
         />
       </div>
-      {loading && <div>Loading</div>}
-      {error && <div>Error</div>}
-      {!loading && !error &&
-        reducedComments.map((comment) =>
+      {
+        reducedComments.map(cmnt =>
           <Comment
-            accountName={users[getRandomInt(0, (users.length - 1))].username}
-            accountImage={props.accountImage}
-            comment={comments[getRandomInt(0, 500)].name}
-            isCommentSection={props.isCommentSection}
+            key={`ran${cmnt}dom`}
+            commenterIndex={getRandomInt(1, (database.results.length - 1))}
+            isCommentSection={true}
           />
         )
       }

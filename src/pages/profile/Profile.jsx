@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import GridBox from "../../components/GridBox";
 import GridItem from "../../components/GridItem";
 import ProfileIcon from "../../components/ProfileIcon";
@@ -10,15 +12,18 @@ import { BsGearWide } from "react-icons/bs";
 import { BsGrid3X3 } from "react-icons/bs";
 import { BsBookmark } from "react-icons/bs";
 import { RiUserAddLine } from "react-icons/ri";
-import profileImage from "../../images/profile.jpg";
 
 import getRandomPostImg from "../../utils/getRandomPostImg";
+
+//context
+import UsersContext from "../../context/UsersContext";
 
 import "./profile.scss";
 
 //temp number of images
 let counts = [`11`, `22`, `33`, `44`, `55`, `66`, `77`, `88`, `99`, `101`];
 
+//grid layouts
 const mdLayout = [
   ["img", "username", "button", "icon"],
   ["img", "social", "social", "social"],
@@ -32,6 +37,9 @@ const smLayout = [
 ];
 
 export default function Profile() {
+  /* user */
+  const { database, loggedUserIndex } = useContext(UsersContext);
+  const user = database.results[loggedUserIndex]
 
   return (
     <div className="profile-wrapper">
@@ -42,14 +50,16 @@ export default function Profile() {
       >
         <GridItem className="profile-icon-container" area="img">
           <div className="hide-sm">
-            <ProfileIcon iconSize="huge" image={profileImage} />
+            <ProfileIcon iconSize="huge" image={user.picture.large} />
           </div>
           <div className="hide-md">
-            <ProfileIcon iconSize="xtra-L" image={profileImage} />
+            <ProfileIcon iconSize="large" image={user.picture.medium} />
           </div>
         </GridItem>
 
-        <GridItem className="username" area="username">jun.nujj</GridItem>
+        <GridItem className="username" area="username">
+          {user.login.username}
+        </GridItem>
 
         <GridItem area="button">
           <Button className="edit-btn" width="100%" white>Edit Profile</Button>
@@ -67,7 +77,9 @@ export default function Profile() {
           </div>
         </GridItem>
 
-        <GridItem className="name" area="name">Jun Nujj</GridItem>
+        <GridItem className="name" area="name">
+          {`${user.name.first} ${user.name.last}`}
+        </GridItem>
       </GridBox>
 
       <div className="activities">
@@ -79,7 +91,12 @@ export default function Profile() {
 
         <ImgGallery className="gallery">
           {counts.map(count => (
-            <Img styledHover src={getRandomPostImg(3, 5)} key={count} />
+            <Img
+              key={count}
+              styledHover
+              posterIndex={loggedUserIndex}
+              src={getRandomPostImg(3, 5)}
+            />
           ))}
         </ImgGallery>
       </div>

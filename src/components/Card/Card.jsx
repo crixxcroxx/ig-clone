@@ -1,11 +1,14 @@
+import { useContext } from "react";
+
 import FlexBox from "../FlexBox";
 import ProfileCard from "../ProfileCard";
+import ProfileIcon from "../ProfileIcon";
 import CardMenu from "../CardMenu";
 import Comment from "../Comment";
 import CommentSection from "../CommentSection";
 
 import getRandomInt from "../../utils/getRandomInt";
-import useFetch from "../../hooks/useFetch";
+import UsersContext from "../../context/UsersContext";
 
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import { AiOutlineSmile } from "react-icons/ai";
@@ -13,45 +16,34 @@ import { AiOutlineSmile } from "react-icons/ai";
 import "./card.scss";
 
 export default function Card(props) {
-  const { data: comments, loading, error } = useFetch("comments");
-
   const {
-    accountName,
-    accountImage,
-    post,
-    storyBorder,
-    postImage,
-    commentSection,
-    likedByText,
+    posterIndex,
+    likedByIndex,
     likedByNumber,
-    hours,
+    hrsPosted,
+    postImageAsBody,
+    commentSectionAsBody
   } = props;
 
+  const { database } = useContext(UsersContext)
+
+  const likedBy = database.results[likedByIndex]
+
   return (
-    <div className={`card ${commentSection && "no-border"}`}>
+    <div className={`card ${commentSectionAsBody && "no-border"}`}>
       <header>
         <ProfileCard
-          username={accountName}
-          image={accountImage}
-          storyBorder={storyBorder}
-          iconSize="medium"
+          userIndex={posterIndex}
+          iconSize="small"
         />
         <IoEllipsisHorizontalSharp className="ellipsis-icon" />
       </header>
 
       <div className="card-body">
-        {/* display image when image is passed as prop
-            else display the comment section */}
-
-        {postImage && <img src={postImage} alt="Card Content" />}
-        {commentSection &&
+        {postImageAsBody && <img src={postImageAsBody} alt="Card Content" />}
+        {commentSectionAsBody &&
           <div className="csection-container">
-            <CommentSection
-              username={accountName}
-              accountImage={accountImage}
-              post={post.body}
-              isCommentSection={true}
-            />
+            <CommentSection posterIndex={posterIndex} />
           </div>
         }
       </div>
@@ -60,50 +52,41 @@ export default function Card(props) {
         <CardMenu />
 
         <div className="liked-by">
-          <ProfileCard hideAccountName={true} iconSize="small" />
+          <ProfileIcon
+            image={likedBy.picture.thumbnail}
+            iconSize="xSmall"
+          />
           <span>
             Liked by
-            <strong className="username">{likedByText}</strong> and
+            <strong className="username">{likedBy.login.username}</strong> and
             <strong> {likedByNumber} others</strong>
           </span>
         </div>
 
-        {!commentSection &&
+        {!commentSectionAsBody &&
           <div className="user-post-desc">
-            <strong className="username">{accountName}</strong>
-            {post.body.length > 45 && (
-              <>
-                {post.body.substring(0, 45)}
-                <span className="more-text">...more</span>
-              </>
-            )}
+            <Comment
+              commenterIndex={getRandomInt(1, (database.results.length - 1))}
+              isCommentSection={false}
+            />
           </div>
         }
 
-        {/* display preview comment when postImage is passed as prop */}
-        {postImage &&
+        {postImageAsBody &&
           <>
           <div className="view-all-comments">{
             `View all ${getRandomInt(3, 50)} comments`
           }</div>
 
           <FlexBox className="comments" aliItem="normal">
-            {loading && <div>Loading</div>}
-            {error && <div>Something went wrong!</div>}
-            {!loading && !error &&
-              <Comment
-                key={comments[getRandomInt(0, 500)].id}
-                accountName={comments[getRandomInt(0, 500)].email.split("@")[0]}
-                comment={
-                  comments[getRandomInt(0, 500)].body.substring(0, 50) + "..."
-                }
-              />
-            }
+            <Comment
+              commenterIndex={getRandomInt(1, (database.results.length - 1))}
+            />
           </FlexBox>
           </>
         }
 
-        <div className="time-posted">{hours} HOURS AGO</div>
+        <div className="time-posted">{hrsPosted} HOURS AGO</div>
       </div>
 
       <div className="card-footer">
@@ -113,7 +96,7 @@ export default function Card(props) {
             <textarea
               className="comment-text"
               placeholder="Add a comment…"
-              cols={commentSection ? "28" : "51"}
+              cols={commentSectionAsBody ? "28" : "51"}
               rows="1"
               autoComplete="off"
               autoCorrect="off"
