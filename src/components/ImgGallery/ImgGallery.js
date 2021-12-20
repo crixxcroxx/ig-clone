@@ -8,6 +8,10 @@ const ImgGallery = styled.div.attrs((props) => ({
   justify-content: center;
   gap: clamp(0.5rem, 2vw, 1rem);
 
+  > * {
+    aspect-ratio: 1 / 1;
+  }
+
   @media (max-width: 600px) {
     gap: clamp(0.2rem, 1vw, 0.5rem);
   }

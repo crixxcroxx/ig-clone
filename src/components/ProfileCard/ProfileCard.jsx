@@ -7,7 +7,7 @@ import "./profileCard.scss";
 
 export default function ProfileCard(props) {
   const {
-    userIndex,
+    userId,
     iconSize,
     caption,
     captionSize,
@@ -15,38 +15,32 @@ export default function ProfileCard(props) {
     isSuggestion
   } = props;
 
-  const { database } = useContext(UsersContext)
-  const user = database.results[userIndex]
-
-  let imageSize = ""
-
-    if (iconSize === "xSmall" || iconSize === "small") {
-      imageSize = "thumbnail"
-    } else if(iconSize === "medium" || iconSize === "large") {
-      imageSize = "medium"
-    } else if(iconSize === "huge") {
-      imageSize = "large"
-    }
+  const { USERS_DB } = useContext(UsersContext)
+  const user = USERS_DB[USERS_DB.findIndex(el => el.id === userId)]
 
   return (
-    <div className="profile">
-      <div className={`${isSuggestion && "align-start"}`}>
-      <ProfileIcon
-        image={user.picture[imageSize]}
-        iconSize={iconSize}
-      />
-      </div>
+    <>
+      {user &&
+      <div className="profile">
+        <div className={`${isSuggestion && "align-start"}`}>
+        <ProfileIcon
+          userId={userId}
+          iconSize={iconSize}
+        />
+        </div>
 
-      <div className={`text-container ${captionSize}`}>
-        <span className="account-name">
-          {user.login.username}
-        </span>
-        {caption && (
-          <span className={`caption ${captionSize}`}>{caption}</span>
-        )}
-      </div>
+        <div className={`text-container ${captionSize}`}>
+          <span className="account-name">
+            {user.firstName}.{user.lastName}
+          </span>
+          {caption && (
+            <span className={`caption ${captionSize}`}>{caption}</span>
+          )}
+        </div>
 
-      <a href="/">{urlText}</a>
-    </div>
+        <a href="/">{urlText}</a>
+      </div>
+      }
+    </>
   );
 }

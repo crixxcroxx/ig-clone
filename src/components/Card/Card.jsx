@@ -17,23 +17,24 @@ import "./card.scss";
 
 export default function Card(props) {
   const {
-    posterIndex,
-    likedByIndex,
+    posterId,
+    postText,
+    comments,
     likedByNumber,
-    hrsPosted,
+    postDate,
     postImageAsBody,
     commentSectionAsBody
   } = props;
 
-  const { database } = useContext(UsersContext)
+  const { USERS_DB } = useContext(UsersContext)
 
-  const likedBy = database.results[likedByIndex]
+  const likedBy = USERS_DB[getRandomInt(1, (USERS_DB.length - 1))]
 
   return (
     <div className={`card ${commentSectionAsBody && "no-border"}`}>
       <header>
         <ProfileCard
-          userIndex={posterIndex}
+          userId={posterId}
           iconSize="small"
         />
         <IoEllipsisHorizontalSharp className="ellipsis-icon" />
@@ -43,7 +44,12 @@ export default function Card(props) {
         {postImageAsBody && <img src={postImageAsBody} alt="Card Content" />}
         {commentSectionAsBody &&
           <div className="csection-container">
-            <CommentSection posterIndex={posterIndex} />
+            <CommentSection
+              posterId={posterId}
+              postText={postText}
+              postDate={postDate}
+              comments={comments}
+            />
           </div>
         }
       </div>
@@ -53,12 +59,14 @@ export default function Card(props) {
 
         <div className="liked-by">
           <ProfileIcon
-            image={likedBy.picture.thumbnail}
+            userId={likedBy.id}
             iconSize="xSmall"
           />
           <span>
             Liked by
-            <strong className="username">{likedBy.login.username}</strong> and
+            <strong className="username">
+              {likedBy.firstName}.{likedBy.lastName}
+            </strong> and
             <strong> {likedByNumber} others</strong>
           </span>
         </div>
@@ -66,7 +74,9 @@ export default function Card(props) {
         {!commentSectionAsBody &&
           <div className="user-post-desc">
             <Comment
-              commenterIndex={getRandomInt(1, (database.results.length - 1))}
+              commenterId={posterId}
+              comment={postText}
+              commentDate={postDate}
               isCommentSection={false}
             />
           </div>
@@ -75,18 +85,20 @@ export default function Card(props) {
         {postImageAsBody &&
           <>
           <div className="view-all-comments">{
-            `View all ${getRandomInt(3, 50)} comments`
+            `View all ${comments.data.length} comments`
           }</div>
 
           <FlexBox className="comments" aliItem="normal">
             <Comment
-              commenterIndex={getRandomInt(1, (database.results.length - 1))}
+              commenterId={comments.data[0].id}
+              comment={comments.data[0].message}
+              commentDate={comments.data[0].publishDate}
             />
           </FlexBox>
           </>
         }
 
-        <div className="time-posted">{hrsPosted} HOURS AGO</div>
+        <div className="time-posted">{postDate} HOURS AGO</div>
       </div>
 
       <div className="card-footer">
@@ -108,3 +120,4 @@ export default function Card(props) {
     </div>
   );
 }
+

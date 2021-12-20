@@ -11,8 +11,8 @@ import UsersContext from "../../context/UsersContext";
 import "./posts.scss";
 
 export default function Posts() {
-  const { database } = useContext(UsersContext)
-  const users = database.results
+  const { USERS_DB } = useContext(UsersContext)
+  const users = USERS_DB.results
 
   //get only 3 random users
   let reducedUsers = [121, 131, 141]

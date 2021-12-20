@@ -9,16 +9,24 @@ import { BsPencilSquare } from "react-icons/bs";
 import { IoPaperPlaneOutline } from "react-icons/io5";
 
 import useFetch from "../../hooks/useFetch";
-import getRandomInt from "../../utils/getRandomInt";
 
 import UsersContext from "../../context/UsersContext";
 
 import "./messages.scss";
 
 export default function Messages() {
-  const { data: message, loading, error } = useFetch();
+  const { USERS_DB, USER_ID } = useContext(UsersContext)
+  const user = USERS_DB[USERS_DB.findIndex(el => el.id === USER_ID)]
 
-  const { database, loggedUserIndex } = useContext(UsersContext)
+  //get random ID
+  //then create fake messages from comments
+  const id = "60d21af267d0d8992e610b8d"
+
+  const {
+    data: messages,
+    loading,
+    error
+  } = useFetch(id, "post", "comment", 10);
 
   return (
     <FlexBox className="messages-wrapper" content_sidebar>
@@ -26,8 +34,7 @@ export default function Messages() {
         <FlexBox as="header">
           <FlexBox>
             <span>
-              {database.results[loggedUserIndex].login.username}
-              &nbsp;
+              {user.firstName}.{user.lastName}&nbsp;
             </span>
             <BsChevronDown className="icon" />
           </FlexBox>
@@ -38,17 +45,22 @@ export default function Messages() {
           {loading && <div>Loading</div>}
           {error && <div>Something went wrong!</div>}
           {!loading && !error &&
-            database.results.map(user => (
-              <div className="message">
-                <ProfileCard
-                  key={user.id.value}
-                  userIndex={getRandomInt(1, (database.results.length - 1))}
-                  iconSize="medium"
-                  caption={message}
-                  captionSize="small"
-                />
-              </div>
-            ))
+            <>
+            {messages.length > 0
+              ? messages.map(message =>
+                  <div className="message">
+                    <ProfileCard
+                      key={message.id}
+                      userId={message.owner.id}
+                      iconSize="medium"
+                      caption={message}
+                      captionSize="small"
+                    />
+                  </div>
+                )
+              : <div>No messages</div>
+            }
+            </>
           }
         </div>
       </FlexBox>

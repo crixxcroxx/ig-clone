@@ -9,8 +9,8 @@ import UsersContext from "../../context/UsersContext";
 import "./suggestions.scss";
 
 export default function Suggestions() {
-  const { database } = useContext(UsersContext)
-  const users = database.results
+  const { USERS_DB } = useContext(UsersContext)
+  const users = USERS_DB.results
   let reducedUsers = ["1s1", "2s2", "3s3", "4s4", "5s5"]
 
   return (

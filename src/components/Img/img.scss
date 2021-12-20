@@ -15,6 +15,7 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    aspect-ratio: 1 / 1;
 
     position: absolute;
     inset: 0;
@@ -45,6 +46,8 @@
 
 /**/
 .post-img-modal {
+  max-width: 80vw;
+  max-height: 80vh;
   position: absolute;
   inset: 50% auto auto 50%;
   margin-right: -50%;

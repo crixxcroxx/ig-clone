@@ -1,35 +1,33 @@
-import { useContext } from "react";
-
 import Comment from "../Comment";
-
-import getRandomInt from "../../utils/getRandomInt";
-
-import UsersContext from "../../context/UsersContext";
 
 import "./commentSection.scss";
 
 export default function CommentSection(props) {
-  const { posterIndex } = props
-
-  const { database } = useContext(UsersContext)
-
-  //temp number of comments
-  const reducedComments = [1121, 1131, 1141, 1242, 6458, 2487, 2132, 6548]
+  const {
+    posterId,
+    postText,
+    postDate,
+    comments
+  } = props
 
   return (
     <div className="comment-section">
       <div className="user-post-body">
         <Comment
-          commenterIndex={posterIndex}
+          commenterId={posterId}
+          comment={postText}
+          commentDate={postDate}
           isPoster={true}
           isCommentSection={true}
         />
       </div>
       {
-        reducedComments.map(cmnt =>
+        comments.data.map(comment =>
           <Comment
-            key={`ran${cmnt}dom`}
-            commenterIndex={getRandomInt(1, (database.results.length - 1))}
+            key={comment.id}
+            commenterId={comment.owner.id}
+            comment={comment.message}
+            commentDate={comment.publishDate}
             isCommentSection={true}
           />
         )
@@ -37,3 +35,4 @@ export default function CommentSection(props) {
     </div>
   );
 }
+

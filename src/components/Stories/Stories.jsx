@@ -8,8 +8,8 @@ import UsersContext from "../../context/UsersContext";
 import "./stories.scss";
 
 export default function Stories() {
-  const { database } = useContext(UsersContext)
-  let users = database.results
+  const { USERS_DB } = useContext(UsersContext)
+  let users = USERS_DB.results
   users.shift()
 
   return (

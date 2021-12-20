@@ -33,7 +33,7 @@ Modal.setAppElement(document.getElementById("root"));
 
 export default function Menu() {
   /*user*/
-  const { database, loggedUserIndex } = useContext(UsersContext);
+  const { USER_ID } = useContext(UsersContext);
 
   /*modals*/
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
@@ -206,7 +206,7 @@ export default function Menu() {
       >
         <ProfileIcon
           iconSize="xSmall"
-          image={database.results[loggedUserIndex].picture.thumbnail}
+          userId={USER_ID}
         />
       </i>
     </FlexBox>

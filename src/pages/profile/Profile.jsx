@@ -13,15 +13,11 @@ import { BsGrid3X3 } from "react-icons/bs";
 import { BsBookmark } from "react-icons/bs";
 import { RiUserAddLine } from "react-icons/ri";
 
-import getRandomPostImg from "../../utils/getRandomPostImg";
+import useFetch from "../../hooks/useFetch";
 
-//context
 import UsersContext from "../../context/UsersContext";
 
 import "./profile.scss";
-
-//temp number of images
-let counts = [`11`, `22`, `33`, `44`, `55`, `66`, `77`, `88`, `99`, `101`];
 
 //grid layouts
 const mdLayout = [
@@ -36,10 +32,18 @@ const smLayout = [
   ["name", ".", "."]
 ];
 
-export default function Profile() {
-  /* user */
-  const { database, loggedUserIndex } = useContext(UsersContext);
-  const user = database.results[loggedUserIndex]
+export default function Profile({ userId }) {
+
+  const { USERS_DB, USER_ID } = useContext(UsersContext);
+  let uId = userId ? userId : USER_ID
+
+  const user = USERS_DB[USERS_DB.findIndex(el => el.id === uId)]
+
+  const {
+    data: posts,
+    loading,
+    error
+  } = useFetch(uId, "user", "post", 10)
 
   return (
     <div className="profile-wrapper">
@@ -50,15 +54,15 @@ export default function Profile() {
       >
         <GridItem className="profile-icon-container" area="img">
           <div className="hide-sm">
-            <ProfileIcon iconSize="huge" image={user.picture.large} />
+            <ProfileIcon userId={uId} iconSize="huge" />
           </div>
           <div className="hide-md">
-            <ProfileIcon iconSize="large" image={user.picture.medium} />
+            <ProfileIcon userId={uId} iconSize="large" />
           </div>
         </GridItem>
 
         <GridItem className="username" area="username">
-          {user.login.username}
+          {user.firstName}.{user.lastName}
         </GridItem>
 
         <GridItem area="button">
@@ -78,7 +82,7 @@ export default function Profile() {
         </GridItem>
 
         <GridItem className="name" area="name">
-          {`${user.name.first} ${user.name.last}`}
+          {`${user.firstName} ${user.lastName}`}
         </GridItem>
       </GridBox>
 
@@ -89,16 +93,26 @@ export default function Profile() {
           <p className="link"><span><RiUserAddLine /></span> TAGGED</p>
         </nav>
 
-        <ImgGallery className="gallery">
-          {counts.map(count => (
-            <Img
-              key={count}
-              styledHover
-              posterIndex={loggedUserIndex}
-              src={getRandomPostImg(3, 5)}
-            />
-          ))}
-        </ImgGallery>
+        <>
+        {loading && <div>Loading</div>}
+        {error && <div>Something went wrong</div>}
+        {!loading && !error &&
+          <ImgGallery className="gallery">
+            {posts.data.map(post =>
+              <Img
+                key={post.id}
+                styledHover
+                posterId={uId}
+                postId={post.id}
+                postText={post.text}
+                postDate={post.publishDate}
+                likes={post.likes}
+                src={post.image}
+              />
+            )}
+          </ImgGallery>
+        }
+        </>
       </div>
 
       <div className="footer">

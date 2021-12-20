@@ -1,13 +1,23 @@
+import { useContext } from "react";
+
+import UsersContext from "../../context/UsersContext";
+
 import "./profileIcon.scss";
 
 export default function ProfileIcon(props) {
-  const { image, iconSize, hasStoryBorder } = props;
+  const {
+    userId,
+    iconSize,
+  } = props;
+
+  const { USERS_DB } = useContext(UsersContext)
+  const user = USERS_DB[USERS_DB.findIndex(el => el.id === userId)]
 
   return (
-    <div className={hasStoryBorder && "story-border"}>
+    <div className={user.hasStory ? "story-border" : ""}>
       <img
         className={`profile-icon ${iconSize}`}
-        src={image}
+        src={user.picture}
         alt="User Profile"
       />
     </div>
