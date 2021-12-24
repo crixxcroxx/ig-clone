@@ -5,6 +5,7 @@ import Sidebar from "../../components/Sidebar";
 import "./home.scss";
 
 export default function Home() {
+
   return (
     <FlexBox
       className="home-wrapper"

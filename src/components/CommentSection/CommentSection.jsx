@@ -22,7 +22,7 @@ export default function CommentSection(props) {
         />
       </div>
       {
-        comments.data.map(comment =>
+        comments.map(comment =>
           <Comment
             key={comment.id}
             commenterId={comment.owner.id}

@@ -1,11 +1,9 @@
-import { useContext } from "react";
-
 import ProfileIcon from "../ProfileIcon";
 
 import { AiOutlineHeart } from "react-icons/ai";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 
-import UsersContext from "../../context/UsersContext";
+import { useStoreUsers } from "../../zustand/store/store";
 
 import "./comment.scss";
 
@@ -18,8 +16,8 @@ export default function Comment(props) {
     isCommentSection
   } = props;
 
-  const { USERS_DB } = useContext(UsersContext)
-  const commenter = USERS_DB[USERS_DB.findIndex(el => el.id === commenterId)]
+  const USERS = useStoreUsers(state => state.USERS)
+  const commenter = USERS[USERS.findIndex(el => el.id === commenterId)]
 
   return (
     <>
@@ -38,8 +36,8 @@ export default function Comment(props) {
           <strong className="user-name">
             {commenter.firstName}.{commenter.lastName}
           </strong>
-            {!isCommentSection && comment.length > 10
-              ? comment.toString().substring(0, 10)
+            {!isCommentSection && comment.length > 70
+              ? `${comment.toString().substring(0, 70)}...more`
               : comment
             }
           <div className="comment-controls">

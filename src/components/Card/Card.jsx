@@ -1,5 +1,3 @@
-import { useContext } from "react";
-
 import FlexBox from "../FlexBox";
 import ProfileCard from "../ProfileCard";
 import ProfileIcon from "../ProfileIcon";
@@ -8,7 +6,7 @@ import Comment from "../Comment";
 import CommentSection from "../CommentSection";
 
 import getRandomInt from "../../utils/getRandomInt";
-import UsersContext from "../../context/UsersContext";
+import { useStoreUsers } from "../../zustand/store/store";
 
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import { AiOutlineSmile } from "react-icons/ai";
@@ -18,6 +16,7 @@ import "./card.scss";
 export default function Card(props) {
   const {
     posterId,
+    postImg,
     postText,
     comments,
     likedByNumber,
@@ -26,9 +25,8 @@ export default function Card(props) {
     commentSectionAsBody
   } = props;
 
-  const { USERS_DB } = useContext(UsersContext)
-
-  const likedBy = USERS_DB[getRandomInt(1, (USERS_DB.length - 1))]
+  const USERS = useStoreUsers(state => state.USERS)
+  const likedBy = USERS[getRandomInt(1, (USERS.length - 1))]
 
   return (
     <div className={`card ${commentSectionAsBody && "no-border"}`}>
@@ -41,7 +39,7 @@ export default function Card(props) {
       </header>
 
       <div className="card-body">
-        {postImageAsBody && <img src={postImageAsBody} alt="Card Content" />}
+        {postImageAsBody && <img src={postImg} alt="Card Content" />}
         {commentSectionAsBody &&
           <div className="csection-container">
             <CommentSection
@@ -71,30 +69,30 @@ export default function Card(props) {
           </span>
         </div>
 
-        {!commentSectionAsBody &&
+        {postImageAsBody &&
           <div className="user-post-desc">
             <Comment
               commenterId={posterId}
               comment={postText}
               commentDate={postDate}
-              isCommentSection={false}
+              isPoster={true}
             />
           </div>
         }
 
-        {postImageAsBody &&
+        {postImageAsBody && comments.length > 0 &&
           <>
-          <div className="view-all-comments">{
-            `View all ${comments.data.length} comments`
-          }</div>
+            <div className="view-all-comments">
+              View all {comments.length} comments
+            </div>
 
-          <FlexBox className="comments" aliItem="normal">
-            <Comment
-              commenterId={comments.data[0].id}
-              comment={comments.data[0].message}
-              commentDate={comments.data[0].publishDate}
-            />
-          </FlexBox>
+            <FlexBox className="comments" aliItem="normal">
+              <Comment
+                commenterId={comments[0].owner.id}
+                comment={comments[0].message}
+                commentDate={comments[0].publishDate}
+              />
+            </FlexBox>
           </>
         }
 

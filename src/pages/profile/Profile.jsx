@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useEffect } from "react";
 
 import GridBox from "../../components/GridBox";
 import GridItem from "../../components/GridItem";
@@ -13,9 +13,7 @@ import { BsGrid3X3 } from "react-icons/bs";
 import { BsBookmark } from "react-icons/bs";
 import { RiUserAddLine } from "react-icons/ri";
 
-import useFetch from "../../hooks/useFetch";
-
-import UsersContext from "../../context/UsersContext";
+import { useStoreUsers, useStorePosts } from "../../zustand/store/store";
 
 import "./profile.scss";
 
@@ -34,16 +32,19 @@ const smLayout = [
 
 export default function Profile({ userId }) {
 
-  const { USERS_DB, USER_ID } = useContext(UsersContext);
-  let uId = userId ? userId : USER_ID
-
-  const user = USERS_DB[USERS_DB.findIndex(el => el.id === uId)]
-
+  const { USERS, USER_ID } = useStoreUsers(state => state);
   const {
-    data: posts,
-    loading,
-    error
-  } = useFetch(uId, "user", "post", 10)
+    LOGGED_USER_POSTS,
+    fetchPosts,
+    isLoadingUP
+  } = useStorePosts(state => state);
+
+  let uId = userId ? userId : USER_ID
+  const user = USERS[USERS.findIndex(el => el.id === uId)]
+
+  useEffect(() => {
+    fetchPosts(uId)
+  }, [uId, fetchPosts]);
 
   return (
     <div className="profile-wrapper">
@@ -94,23 +95,23 @@ export default function Profile({ userId }) {
         </nav>
 
         <>
-        {loading && <div>Loading</div>}
-        {error && <div>Something went wrong</div>}
-        {!loading && !error &&
-          <ImgGallery className="gallery">
-            {posts.data.map(post =>
-              <Img
-                key={post.id}
-                styledHover
-                posterId={uId}
-                postId={post.id}
-                postText={post.text}
-                postDate={post.publishDate}
-                likes={post.likes}
-                src={post.image}
-              />
-            )}
-          </ImgGallery>
+        {isLoadingUP
+          ? <div>Loading</div>
+          : <ImgGallery className="gallery">
+              {LOGGED_USER_POSTS.map(post =>
+                <Img
+                  key={post.id}
+                  styledHover
+                  posterId={uId}
+                  postId={post.id}
+                  postText={post.text}
+                  comments={post.comments}
+                  postDate={post.publishDate}
+                  likes={post.likes}
+                  src={post.image}
+                />
+              )}
+            </ImgGallery>
         }
         </>
       </div>

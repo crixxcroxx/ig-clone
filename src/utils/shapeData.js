@@ -1,11 +1,11 @@
 import getRandomInt from "./getRandomInt";
 
-export default function shapeData(arr) {
+export default function shapeData(obj) {
   let finalArray = []
   let userId = ""
 
-  if(arr) {
-    arr.data.map((item, idx) => {
+  if(obj) {
+    obj.data.map((item, idx) => {
       if(idx === 0) {
         //assign first index to be the user
         userId = item.id
@@ -18,8 +18,7 @@ export default function shapeData(arr) {
 
       finalArray.push(item)
     });
-    return { finalArray, userId }
-  } else {
-    return { finalArray, userId }
   }
+
+  return { finalArray, userId }
 }

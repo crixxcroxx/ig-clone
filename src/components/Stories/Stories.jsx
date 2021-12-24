@@ -1,33 +1,29 @@
-import { useContext } from "react";
 import HorizontalScroll from "react-scroll-horizontal";
 
 import Story from "../Story";
 
-import UsersContext from "../../context/UsersContext";
+import { useStoreUsers } from "../../zustand/store/store";
 
 import "./stories.scss";
 
 export default function Stories() {
-  const { USERS_DB } = useContext(UsersContext)
-  let users = USERS_DB.results
-  users.shift()
+  const USERS = useStoreUsers(state => state.USERS)
 
   return (
     <div className="stories">
-      <div className="stories-list">
-        <HorizontalScroll className="scroll" reverseScroll={true}>
-          {
-            users.map(user =>
-              <div key={user.id.value}>
-                <Story
-                  image={user.picture.medium}
-                  userName={user.login.username}
-                />
-              </div>
-            )
-          }
-        </HorizontalScroll>
-      </div>
+      {USERS.length === 0 ? <div>Loading</div> :
+        <div className="stories-list">
+          <HorizontalScroll className="scroll" reverseScroll={true}>
+            {USERS.map(user =>
+              <Story
+                key={user.id}
+                userId={user.id}
+                userName={`${user.firstName}.${user.lastName}`}
+              />
+            )}
+          </HorizontalScroll>
+        </div>
+      }
     </div>
   );
 }

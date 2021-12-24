@@ -1,6 +1,4 @@
-import { useContext } from "react";
-
-import UsersContext from "../../context/UsersContext";
+import { useStoreUsers } from "../../zustand/store/store";
 
 import "./profileIcon.scss";
 
@@ -10,16 +8,16 @@ export default function ProfileIcon(props) {
     iconSize,
   } = props;
 
-  const { USERS_DB } = useContext(UsersContext)
-  const user = USERS_DB[USERS_DB.findIndex(el => el.id === userId)]
+  const USERS = useStoreUsers(state => state.USERS)
+  let user =  USERS[USERS.findIndex(el => el.id === userId)]
 
   return (
     <div className={user.hasStory ? "story-border" : ""}>
-      <img
-        className={`profile-icon ${iconSize}`}
-        src={user.picture}
-        alt="User Profile"
-      />
-    </div>
+          <img
+          className={`profile-icon ${iconSize}`}
+          src={user.picture}
+          alt="User Profile"
+        />
+      </div>
   );
 }

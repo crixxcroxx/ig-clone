@@ -8,19 +8,15 @@ import {
 
 import App from "./components/App";
 
-import UsersProvider from "./context/UsersProvider";
-
 import "./styles/index.scss";
 
 ReactDOM.render(
   <React.StrictMode>
-    <UsersProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/*" element={<App />}/>
-        </Routes>
-      </BrowserRouter>
-    </UsersProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/*" element={<App />}/>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

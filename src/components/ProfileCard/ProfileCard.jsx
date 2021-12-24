@@ -1,8 +1,7 @@
-import { useContext } from "react";
-
 import ProfileIcon from "../ProfileIcon";
 
-import UsersContext from "../../context/UsersContext";
+import { useStoreUsers } from "../../zustand/store/store";
+
 import "./profileCard.scss";
 
 export default function ProfileCard(props) {
@@ -15,8 +14,8 @@ export default function ProfileCard(props) {
     isSuggestion
   } = props;
 
-  const { USERS_DB } = useContext(UsersContext)
-  const user = USERS_DB[USERS_DB.findIndex(el => el.id === userId)]
+  const USERS = useStoreUsers(state => state.USERS)
+  const user = USERS[USERS.findIndex(el => el.id === userId)]
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
 
@@ -24,16 +24,14 @@ import { BsBookmark } from "react-icons/bs";
 import { BsGearWide } from "react-icons/bs";
 import { AiOutlineSync } from "react-icons/ai";
 
-//context
-import UsersContext from "../../context/UsersContext";
+import { useStoreUsers } from "../../zustand/store/store";
 
 import "./menu.scss";
 
 Modal.setAppElement(document.getElementById("root"));
 
 export default function Menu() {
-  /*user*/
-  const { USER_ID } = useContext(UsersContext);
+  const { USER_ID, isLoading } = useStoreUsers(state => state);
 
   /*modals*/
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
@@ -204,10 +202,12 @@ export default function Menu() {
         onKeyDown={(e) => openProfileMenu(e)}
         onClick={(e) => openProfileMenu(e)}
       >
-        <ProfileIcon
-          iconSize="xSmall"
-          userId={USER_ID}
-        />
+        {!isLoading &&
+          <ProfileIcon
+            iconSize="xSmall"
+            userId={USER_ID}
+          />
+        }
       </i>
     </FlexBox>
   );

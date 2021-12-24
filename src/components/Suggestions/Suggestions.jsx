@@ -1,17 +1,21 @@
-import { useContext } from "react";
-
 import ProfileCard from "../ProfileCard";
 
 import getRandomInt from "../../utils/getRandomInt";
 
-import UsersContext from "../../context/UsersContext";
+import { useStoreUsers } from "../../zustand/store/store";
 
 import "./suggestions.scss";
 
 export default function Suggestions() {
-  const { USERS_DB } = useContext(UsersContext)
-  const users = USERS_DB.results
-  let reducedUsers = ["1s1", "2s2", "3s3", "4s4", "5s5"]
+  const USERS = useStoreUsers(state => state.USERS)
+  let users
+  if(USERS.length > 0) {
+    users = USERS
+    users.unshift()
+    users.splice(6, USERS.length)
+  }
+
+//   filter data!! for suggestions and stories
 
   return (
     <div className="suggestions">
@@ -23,23 +27,25 @@ export default function Suggestions() {
           <strong>See All</strong>
         </a>
       </div>
-
-      <div className="suggestions-list">
-        {reducedUsers.map(user =>
-          <ProfileCard
-            key={user}
-            userIndex={getRandomInt(1, (users.length - 1))}
-            iconSize="small"
-            caption={`Followed by
-              ${users[getRandomInt(1, (users.length - 1))].login.username} +
-              ${getRandomInt(1,15)} more`
-            }
-            captionSize="small"
-            urlText="Follow"
-            isSuggestion={true}
-          />
-        )}
-      </div>
+      {USERS.length === 0
+        ? <div>Loading</div>
+        : <div className="suggestions-list">
+            {USERS.map(user =>
+              <ProfileCard
+                key={user.id}
+                userId={user.id}
+                iconSize="small"
+                caption={`Followed by
+                  ${USERS[getRandomInt(1, (USERS.length - 1))].firstName} +
+                  ${getRandomInt(1,15)} more`
+                }
+                captionSize="small"
+                urlText="Follow"
+                isSuggestion={true}
+              />
+            )}
+          </div>
+      }
     </div>
   );
 }

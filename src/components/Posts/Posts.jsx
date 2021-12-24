@@ -1,34 +1,38 @@
-import { useContext } from "react";
+import { useEffect } from "react";
 
 import FlexBox from "../FlexBox";
 import Card from "../Card";
 
-import getRandomInt from "../../utils/getRandomInt";
-import getRandomPostImg from "../../utils/getRandomPostImg";
-
-import UsersContext from "../../context/UsersContext";
+import { useStorePosts } from "../../zustand/store/store";
 
 import "./posts.scss";
 
 export default function Posts() {
-  const { USERS_DB } = useContext(UsersContext)
-  const users = USERS_DB.results
+  const { POSTS, fetchPosts, isLoadingP } = useStorePosts(state => state);
 
-  //get only 3 random users
-  let reducedUsers = [121, 131, 141]
+  useEffect(() => {
+    fetchPosts(20)
+  }, [fetchPosts]);
 
   return (
-    <FlexBox className="posts">
-      {reducedUsers.map((user, index) => (
-        <Card
-          key={`n${index}d`}
-          posterIndex={getRandomInt(1, (users.length - 1))}
-          likedByIndex={getRandomInt(1, (users.length - 1))}
-          postImageAsBody={getRandomPostImg(3, 10)}
-          likedByNumber={getRandomInt(1, 100)}
-          hrsPosted={getRandomInt(1, 12)}
-        />
-      ))}
-    </FlexBox>
+    <>
+    {isLoadingP
+      ? <div>Loading</div>
+      : <FlexBox className="posts">
+          {POSTS.map(post => (
+            <Card
+              key={post.id}
+              posterId={post.owner.id}
+              postImg={post.image}
+              postText={post.text}
+              comments={post.comments}
+              likedByNumber={post.likes}
+              postDate={post.publishDate}
+              postImageAsBody={true}
+            />
+          ))}
+        </FlexBox>
+    }
+    </>
   );
 }
