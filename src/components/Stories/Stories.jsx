@@ -7,14 +7,14 @@ import { useStoreUsers } from "../../zustand/store/store";
 import "./stories.scss";
 
 export default function Stories() {
-  const USERS = useStoreUsers(state => state.USERS)
+  const STORIES = useStoreUsers(state => state.STORIES)
 
   return (
     <div className="stories">
-      {USERS.length === 0 ? <div>Loading</div> :
+      {STORIES.length === 0 ? <div>Loading</div> :
         <div className="stories-list">
           <HorizontalScroll className="scroll" reverseScroll={true}>
-            {USERS.map(user =>
+            {STORIES.map(user =>
               <Story
                 key={user.id}
                 userId={user.id}

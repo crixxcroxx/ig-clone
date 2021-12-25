@@ -7,15 +7,7 @@ import { useStoreUsers } from "../../zustand/store/store";
 import "./suggestions.scss";
 
 export default function Suggestions() {
-  const USERS = useStoreUsers(state => state.USERS)
-  let users
-  if(USERS.length > 0) {
-    users = USERS
-    users.unshift()
-    users.splice(6, USERS.length)
-  }
-
-//   filter data!! for suggestions and stories
+  const { USERS, SUGGESTIONS } = useStoreUsers(state => state)
 
   return (
     <div className="suggestions">
@@ -30,7 +22,7 @@ export default function Suggestions() {
       {USERS.length === 0
         ? <div>Loading</div>
         : <div className="suggestions-list">
-            {USERS.map(user =>
+            {SUGGESTIONS.map(user =>
               <ProfileCard
                 key={user.id}
                 userId={user.id}

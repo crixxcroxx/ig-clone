@@ -1,7 +1,6 @@
 import axios from "axios";
 import create from "zustand";
 
-import getRandomInt from "../../utils/getRandomInt";
 import shapeData from "../../utils/shapeData";
 
 const BASE_URL = "https://dummyapi.io/data/v1/"
@@ -14,16 +13,28 @@ const headers = {
 export const useStoreUsers = create(set => ({
   USERS: [],
   USER_ID: "",
+  SUGGESTIONS: [],
+  STORIES: [],
   isLoading: true,
   fetchUsers: (limit) => {
     axios
       .get(`${BASE_URL}user?limit=${limit}`,headers)
       .then(res => {
         let shapedData = shapeData(res.data)
-        let suggestion = []
+        let tempSuggestions = shapedData.finalArray.filter(user => !user.following)
+        let tempStories = shapedData.finalArray.filter(user =>
+          user.following && user.hasStory)
 
         set({ USERS: shapedData.finalArray })
         set({ USER_ID: shapedData.userId })
+        set({ STORIES: tempStories })
+
+        if(tempSuggestions.length > 5) {
+          tempSuggestions.shift()
+          tempSuggestions.splice(5)
+          set({ SUGGESTIONS: tempSuggestions })
+        }
+
         set({ isLoading: false })
       })
       .catch((err) => console.log(err))
@@ -54,7 +65,14 @@ export const useStorePosts = create((set, state) => ({
       .get(url, headers)
       .then(res => {
         let posts = res.data.data
-        let comments = []
+        let data = useStoreUsers.getState()
+
+        //remove posts with non-existing user
+        posts.map((post, idx) => {
+          let user = data.USERS.findIndex(el => el.id === post.owner.id)
+
+          if(user === -1) posts.splice(idx, 1)
+        })
 
         //get comments on each post
         axios

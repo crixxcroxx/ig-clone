@@ -11,6 +11,7 @@ export default function ProfileCard(props) {
     caption,
     captionSize,
     urlText,
+    isUser,
     isSuggestion
   } = props;
 
@@ -30,10 +31,12 @@ export default function ProfileCard(props) {
 
         <div className={`text-container ${captionSize}`}>
           <span className="account-name">
-            {user.firstName}.{user.lastName}
+            {user.firstName} {user.lastName}
           </span>
-          {caption && (
-            <span className={`caption ${captionSize}`}>{caption}</span>
+          {(caption || isUser) && (
+            <span className={`caption ${captionSize}`}>
+              {isUser ? `${user.firstName}.${user.lastName}` : caption }
+            </span>
           )}
         </div>
 

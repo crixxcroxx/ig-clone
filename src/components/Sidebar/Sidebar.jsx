@@ -13,8 +13,10 @@ export default function Sidebar() {
     <div className="sidebar">
       <ProfileCard
         userId={USER_ID}
+        captionSize="small"
         iconSize="medium"
         urlText="Switch"
+        isUser={true}
       />
       <Suggestions />
       <Footer />
